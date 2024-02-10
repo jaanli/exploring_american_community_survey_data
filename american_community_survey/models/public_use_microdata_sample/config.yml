@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: list_public_use_microdata_sample_urls
+    config:
+      public_use_microdata_sample_url: "{{ var('public_use_microdata_sample_url') }}"
+      output_path: "{{ var('output_path') }}"
+  - name: extract_public_use_microdata_sample_archives
+    config:
+      public_use_microdata_sample_url: "{{ var('public_use_microdata_sample_url') }}"
+      output_path: "{{ var('output_path') }}"
