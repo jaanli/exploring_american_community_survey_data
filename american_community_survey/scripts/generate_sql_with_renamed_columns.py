@@ -84,6 +84,6 @@ for csv_path in df_csv_paths["csv_path"]:
 {sql_select_statement}
 FROM read_csv_auto('{csv_path}')"""
 
-    sql_file_path = os.path.join(models_dir, f"{materialized_name}.sql")
+    sql_file_path = os.path.join(models_dir, f"{materialized_name}_renamed_columns.sql")
     with open(sql_file_path, "w") as sql_file:
         sql_file.write(sql_content)
