@@ -1,0 +1,9 @@
+bs4
+dbt-duckdb
+pandas
+numpy
+matplotlib
+seaborn
+tqdm
+pyarrow
+sqlfluff

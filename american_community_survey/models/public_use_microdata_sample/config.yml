@@ -1,11 +1,15 @@
 version: 2
 
 models:
-  - name: list_public_use_microdata_sample_urls
+  - name: list_urls
     config:
       public_use_microdata_sample_url: "{{ var('public_use_microdata_sample_url') }}"
       output_path: "{{ var('output_path') }}"
-  - name: extract_public_use_microdata_sample_archives
+  - name: download_and_extract_archives
     config:
       public_use_microdata_sample_url: "{{ var('public_use_microdata_sample_url') }}"
+      output_path: "{{ var('output_path') }}"
+  - name: parse_data_dictionary
+    config:
+      public_use_microdata_sample_data_dictionary_url: "{{ var('public_use_microdata_sample_data_dictionary_url') }}"
       output_path: "{{ var('output_path') }}"

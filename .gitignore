@@ -1,5 +1,10 @@
 # Duckdb
-.duckdb
+*.duckdb
+*.duckdb.tmp/
+*.duckdb.wal
+
+# MacOS 
+.DS_Store
 
 # Venv
 .venv/
