@@ -322,9 +322,12 @@ Work status of householder or spouse in family households
 
 ## Requirements
 
-Create virtual environment:
+Clone the repo; create and activate a virtual environment:
 ```
+git clone https://github.com/jaanli/exploring_american_community_survey_data.git
+cd exploring_american_community_survey_data
 python3 -m venv .venv 
+source activate 
 ```
 
 Install the requirements:

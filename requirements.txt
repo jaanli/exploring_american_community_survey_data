@@ -8,6 +8,12 @@ agate==1.7.1
     # via dbt-core
 annotated-types==0.6.0
     # via pydantic
+appdirs==1.4.4
+    # via sqlfluff
+appnope==0.1.4
+    # via ipykernel
+asttokens==2.4.1
+    # via stack-data
 attrs==23.2.0
     # via
     #   jsonschema
@@ -22,14 +28,23 @@ certifi==2024.2.2
     # via requests
 cffi==1.16.0
     # via dbt-core
+chardet==5.2.0
+    # via
+    #   diff-cover
+    #   sqlfluff
 charset-normalizer==3.3.2
     # via requests
 click==8.1.7
     # via
     #   dbt-core
     #   dbt-semantic-interfaces
+    #   sqlfluff
 colorama==0.4.6
-    # via dbt-core
+    # via
+    #   dbt-core
+    #   sqlfluff
+comm==0.2.1
+    # via ipykernel
 contourpy==1.2.0
     # via matplotlib
 cycler==0.12.1
@@ -42,8 +57,16 @@ dbt-extractor==0.5.1
     # via dbt-core
 dbt-semantic-interfaces==0.4.3
     # via dbt-core
+debugpy==1.8.1
+    # via ipykernel
+decorator==5.1.1
+    # via ipython
+diff-cover==8.0.3
+    # via sqlfluff
 duckdb==0.9.2
     # via dbt-duckdb
+executing==2.0.1
+    # via stack-data
 fonttools==4.48.1
     # via matplotlib
 idna==3.6
@@ -52,20 +75,36 @@ idna==3.6
     #   requests
 importlib-metadata==6.11.0
     # via dbt-semantic-interfaces
+iniconfig==2.0.0
+    # via pytest
+ipykernel==6.29.2
+    # via -r requirements.in
+ipython==8.21.0
+    # via ipykernel
 isodate==0.6.1
     # via
     #   agate
     #   dbt-core
+jedi==0.19.1
+    # via ipython
 jinja2==3.1.3
     # via
     #   dbt-core
     #   dbt-semantic-interfaces
+    #   diff-cover
+    #   sqlfluff
 jsonschema==4.21.1
     # via
     #   dbt-core
     #   dbt-semantic-interfaces
 jsonschema-specifications==2023.12.1
     # via jsonschema
+jupyter-client==8.6.0
+    # via ipykernel
+jupyter-core==5.7.1
+    # via
+    #   ipykernel
+    #   jupyter-client
 kiwisolver==1.4.5
     # via matplotlib
 leather==0.3.4
@@ -82,12 +121,18 @@ matplotlib==3.8.2
     # via
     #   -r requirements.in
     #   seaborn
+matplotlib-inline==0.1.6
+    # via
+    #   ipykernel
+    #   ipython
 minimal-snowplow-tracker==0.0.2
     # via dbt-core
 more-itertools==10.2.0
     # via dbt-semantic-interfaces
 msgpack==1.0.7
     # via mashumaro
+nest-asyncio==1.6.0
+    # via ipykernel
 networkx==3.2.1
     # via dbt-core
 numpy==1.26.4
@@ -101,19 +146,41 @@ numpy==1.26.4
 packaging==23.2
     # via
     #   dbt-core
+    #   ipykernel
     #   matplotlib
+    #   pytest
 pandas==2.2.0
     # via
     #   -r requirements.in
     #   seaborn
 parsedatetime==2.6
     # via agate
+parso==0.8.3
+    # via jedi
 pathspec==0.11.2
-    # via dbt-core
+    # via
+    #   dbt-core
+    #   sqlfluff
+pexpect==4.9.0
+    # via ipython
 pillow==10.2.0
     # via matplotlib
+platformdirs==4.2.0
+    # via jupyter-core
+pluggy==1.4.0
+    # via
+    #   diff-cover
+    #   pytest
+prompt-toolkit==3.0.43
+    # via ipython
 protobuf==4.25.2
     # via dbt-core
+psutil==5.9.8
+    # via ipykernel
+ptyprocess==0.7.0
+    # via pexpect
+pure-eval==0.2.2
+    # via stack-data
 pyarrow==15.0.0
     # via -r requirements.in
 pycparser==2.21
@@ -122,11 +189,18 @@ pydantic==2.6.1
     # via dbt-semantic-interfaces
 pydantic-core==2.16.2
     # via pydantic
+pygments==2.17.2
+    # via
+    #   diff-cover
+    #   ipython
 pyparsing==3.1.1
     # via matplotlib
+pytest==8.0.0
+    # via sqlfluff
 python-dateutil==2.8.2
     # via
     #   dbt-semantic-interfaces
+    #   jupyter-client
     #   matplotlib
     #   pandas
 python-slugify==8.0.4
@@ -141,10 +215,17 @@ pyyaml==6.0.1
     # via
     #   dbt-core
     #   dbt-semantic-interfaces
+    #   sqlfluff
+pyzmq==25.1.2
+    # via
+    #   ipykernel
+    #   jupyter-client
 referencing==0.33.0
     # via
     #   jsonschema
     #   jsonschema-specifications
+regex==2023.12.25
+    # via sqlfluff
 requests==2.31.0
     # via
     #   dbt-core
@@ -157,18 +238,39 @@ seaborn==0.13.2
     # via -r requirements.in
 six==1.16.0
     # via
+    #   asttokens
     #   isodate
     #   leather
     #   minimal-snowplow-tracker
     #   python-dateutil
 soupsieve==2.5
     # via beautifulsoup4
+sqlfluff==2.3.5
+    # via -r requirements.in
 sqlparse==0.4.4
     # via dbt-core
+stack-data==0.6.3
+    # via ipython
+tblib==3.0.0
+    # via sqlfluff
 text-unidecode==1.3
     # via python-slugify
+tornado==6.4
+    # via
+    #   ipykernel
+    #   jupyter-client
 tqdm==4.66.2
-    # via -r requirements.in
+    # via
+    #   -r requirements.in
+    #   sqlfluff
+traitlets==5.14.1
+    # via
+    #   comm
+    #   ipykernel
+    #   ipython
+    #   jupyter-client
+    #   jupyter-core
+    #   matplotlib-inline
 typing-extensions==4.9.0
     # via
     #   dbt-core
@@ -176,11 +278,14 @@ typing-extensions==4.9.0
     #   mashumaro
     #   pydantic
     #   pydantic-core
+    #   sqlfluff
 tzdata==2023.4
     # via pandas
 urllib3==1.26.18
     # via
     #   dbt-core
     #   requests
+wcwidth==0.2.13
+    # via prompt-toolkit
 zipp==3.17.0
     # via importlib-metadata
