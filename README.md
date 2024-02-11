@@ -1,4 +1,4 @@
-# Using data build tool to process the entire American Community Survey data
+# Using data build tool to process the entire American Community Survey individual-level and household data in 5 minutes
 
 Using the Census Bureau's American Community Survey (ACS) data with `dbt` (data build tool) for creating compressed parquet files for exploratory data analysis and downstream applications.
 
