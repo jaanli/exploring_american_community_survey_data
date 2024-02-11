@@ -71,7 +71,7 @@ It takes ~ 30 seconds on a Macbook Pro with an M3 processor to download and extr
 
 ## Variables available for individual-level microdata on people
 
-The following variables are available in the individual-level census files for every (anonymized) person, alongside 79 variables for the `weight` of the person (for computing population-level weighted estimates):
+The following variables are available in the individual-level census files for every (anonymized) person, alongside 79 variables for the `weight` of the person (for computing population-level weighted estimates and [allocation flags](https://www.census.gov/acs/www/methodology/sample-size-and-data-quality/item-allocation-rates/) to denote missing values that were imputed):
 ```
 Record Type
 Housing unit/GQ person serial number
@@ -211,7 +211,7 @@ TRICARE coverage given through the eligibility coverage edit
 
 ## Househould level variables available in the data
 
-The following variables are available for every household in the data (alongside 79 weight replicates for computing population-level weighted estimates):
+The following variables are available for every household in the data (alongside 79 weight replicates for computing population-level weighted estimates, and [allocation flags](https://www.census.gov/acs/www/methodology/sample-size-and-data-quality/item-allocation-rates/) to denote missing values that were imputed):
 
 ```
 Record Type

@@ -1,6 +1,18 @@
-What should we do and where should we go in relation to spatial equity, the built environment, capital, public space, to understand the diversity and have a lot of light-hearted fun exploring the city? 
+Core concepts:
+- value
+- loneliness
+- health
+- diversity
+- built environment
+- capital
 
-We can make analysis of individual person-level american community survey data using these variables: 
+What should we do and where should we go in relation to these core concepts to understand them through lived experiences have a lot of light-hearted fun exploring New York City? Do not provide any answers; this is merely a rhetorical question to guide the following analysis:
+ 
+Please proceed step-by-step and make sure to use detailed variables in every part of your response, concisely. Please avoid all clichés and overwrought references to specific parts of the city (e.g. Queens being the epitome of diversity).
+
+Then revise with a markdown table of activities directly related to these analyses using the variables below.
+
+We can make analyses of individual person-level american community survey data using these variables: 
 
 ```
 Record Type
@@ -139,7 +151,7 @@ Medicaid, medical assistance, or any kind of government-assistance plan for peop
 TRICARE coverage given through the eligibility coverage edit
 ```
 
-We are also able to make use of the housing unit-level variables here: 
+We are also able to make use of the household unit-level variables here: 
 ```
 Record Type
 Housing unit/GQ person serial number
