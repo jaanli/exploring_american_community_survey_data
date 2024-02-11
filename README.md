@@ -203,83 +203,10 @@ Subfamily relationship
 Standard Occupational Classification (SOC) codes for 2018 and later based on 2018 SOC codes
 Veteran period of service
 World area of birth
-Age allocation flag
-Ancestry allocation flag
-Citizenship allocation flag
-Year of naturalization write-in allocation flag
-Class of worker allocation flag
-Self-care difficulty allocation flag
-Hearing difficulty allocation flag
-Vision difficulty allocation flag
-Disability recode allocation flag
-Independent living difficulty allocation flag
-Ambulatory difficulty allocation flag
-Disability rating percentage allocation flag
-Disability rating checkbox allocation flag
-Cognitive difficulty allocation flag
-Ability to speak English allocation flag
-Employment status recode allocation flag
-Gave birth to child within the past 12 months allocation flag
-Field of Degree allocation flag
-Grandparents living with grandchildren allocation flag
-Length of time responsible for grandchildren allocation flag
-Grandparents responsible for grandchildren allocation flag
-Health insurance coverage recode allocation flag
-Subsidized Marketplace Coverage allocation flag
-Insurance through a current or former employer or union allocation flag
-Insurance purchased directly from an insurance company allocation flag
 Medicare coverage given through the eligibility coverage edit
-Medicare, for people 65 or older, or people with certain disabilities allocation flag
 Medicaid coverage given through the eligibility coverage edit
-Medicaid, medical assistance, or any kind of government-assistance plan for people with low incomes or a disability allocation flag
+Medicaid, medical assistance, or any kind of government-assistance plan for people with low incomes or a disability
 TRICARE coverage given through the eligibility coverage edit
-TRICARE or other military health care allocation flag
-VA (enrolled for VA health care) allocation flag
-Indian health service allocation flag
-Detailed Hispanic origin allocation flag
-Industry allocation flag
-Interest, dividend, and net rental income allocation flag
-Time of departure to work allocation flag
-Travel time to work allocation flag
-Vehicle occupancy allocation flag
-Means of transportation to work allocation flag
-Language spoken at home allocation flag
-Language other than English allocation flag
-Marital status allocation flag
-Divorced in the past 12 months allocation flag
-Married in the past 12 months allocation flag
-Times married allocation flag
-Widowed in the past 12 months allocation flag
-Year last married allocation flag
-Mobility status allocation flag
-Migration state and foreign country allocation flag
-Military periods of service allocation flag
-Military service allocation flag
-Occupation allocation flag
-All other income allocation flag
-Public assistance income allocation flag
-Total person's earnings allocation flag
-Total person's income allocation flag
-Place of birth allocation flag
-Place of work state allocation flag
-Private health insurance coverage recode allocation flag
-Public health coverage recode allocation flag
-Detailed race allocation flag
-Relationship allocation flag
-Retirement income allocation flag
-Grade attending allocation flag
-Highest education allocation flag
-School enrollment allocation flag
-Self-employment income allocation flag
-Sex allocation flag
-Supplementary Security Income allocation flag
-Social Security income allocation flag
-Wages and salary income allocation flag
-Usual hours worked per week past 12 months allocation flag
-Last worked allocation flag
-Weeks worked past 12 months allocation flag
-Worked last week allocation flag
-Year of entry allocation flag
 ```
 
 ## Househould level variables available in the data
@@ -391,63 +318,6 @@ Property taxes (yearly real estate taxes)
 Workers in family during the past 12 months
 Work experience of householder and spouse
 Work status of householder or spouse in family households
-Access to the Internet allocation flag
-Lot size allocation flag
-Sales of Agricultural Products allocation flag
-Bathtub or shower allocation flag
-Number of bedrooms allocation flag
-Units in structure allocation flag
-Cellular data plan for a smartphone or other mobile device allocation flag
-Other computer equipment allocation flag
-Condominium fee (monthly amount) allocation flag
-Dial-up service allocation flag
-Electricity cost (monthly cost) allocation flag
-Family income (past 12 months) allocation flag
-Yearly food stamp/Supplemental Nutrition Assistance Program (SNAP) recipiency allocation flag
-Fuel cost (yearly cost for fuels other than gas and electricity) allocation flag
-Gas cost (monthly cost) allocation flag
-Gross rent (monthly amount) allocation flag
-House heating fuel allocation flag
-Household income (past 12 months) allocation flag
-Broadband (high speed) Internet service such as cable, fiber optic, or DSL service allocation flag
-Water heater allocation flag (Puerto Rico only)
-Fire, hazard, flood insurance (yearly amount) allocation flag
-Complete kitchen facilities allocation flag
-Laptop or desktop allocation flag
-Mobile home costs (yearly amount) allocation flag
-First mortgage payment includes fire, hazard, flood insurance allocation flag
-First mortgage payment (monthly amount) allocation flag
-First mortgage payment includes real estate taxes allocation flag
-First mortgage status allocation flag
-When moved into this house or apartment allocation flag
-Other Internet service allocation flag
-Complete plumbing facilities allocation flag
-Complete plumbing facilities allocation flag for Puerto Rico
-Refrigerator allocation flag
-Number of rooms allocation flag
-Meals included in rent allocation flag
-Monthly rent allocation flag
-Hot and cold running water allocation flag
-Running water allocation flag for Puerto Rico
-Satellite Internet service allocation flag
-Sink with a faucet allocation flag
-Smartphone allocation flag
-Selected monthly owner cost allocation flag
-Total payment on second and junior mortgages and home equity loans (monthly amount) allocation flag
-Home equity loan status allocation flag
-Second mortgage status allocation flag
-Stove or range allocation flag
-Tablet or other portable wireless computer allocation flag
-Property taxes (yearly amount) allocation flag
-Telephone service allocation flag
-Tenure allocation flag
-Vacancy duration allocation flag
-Other vacancy allocation flag
-Vacancy status allocation flag
-Property value allocation flag
-Vehicles available allocation flag
-Water cost (yearly cost) allocation flag
-When structure first built allocation flag
 ```
 
 ## Requirements
