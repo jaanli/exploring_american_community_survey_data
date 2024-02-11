@@ -93,6 +93,41 @@ du -hc ~/data/american_community_survey/*.parquet
 
 It takes ~ 30 seconds on a Macbook Pro with an M3 processor to download and extract 1 year's worth of public use microdata sample (PUMS) data from the ACS, and ~ 3 minutes to compress the CSV files into parquet files for exploratory data analysis and mapping.
 
+You can inspect how many individual people are represented in the individual-level data with `duckdb`:
+```
+❯ duckdb
+v0.9.2 3c695d7ba9
+Enter ".help" for usage hints.
+Connected to a transient in-memory database.
+Use ".open FILENAME" to reopen on a persistent database.
+D SELECT COUNT(*) FROM '~/data/american_community_survey/individual_people_*[!united_*].parquet';
+┌──────────────┐
+│ count_star() │
+│    int64     │
+├──────────────┤
+│      2777288 │
+└──────────────┘
+```
+
+(The regular expression `[!united_*]` excludes the national-level data.)
+
+You can inspect that how many households are represented in housing unit-level data:
+
+```
+❯ duckdb
+v0.9.2 3c695d7ba9
+Enter ".help" for usage hints.
+Connected to a transient in-memory database.
+Use ".open FILENAME" to reopen on a persistent database.
+D SELECT COUNT(*) FROM '~/data/american_community_survey/housing_units_*[!united_*].parquet';
+┌──────────────┐
+│ count_star() │
+│    int64     │
+├──────────────┤
+│      1323158 │
+└──────────────┘
+```
+
 ## Types of data available for every person who responded to the American Community Survey
 
 The following variables are available in the individual-level census files for every (anonymized) person, alongside 79 variables for the `weight` of the person (for computing population-level weighted estimates and [allocation flags](https://www.census.gov/acs/www/methodology/sample-size-and-data-quality/item-allocation-rates/) to denote missing values that were imputed):
