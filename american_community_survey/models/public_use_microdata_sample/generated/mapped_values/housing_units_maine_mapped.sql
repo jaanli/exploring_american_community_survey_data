@@ -6,11 +6,11 @@ SELECT
 	CASE RT
 		WHEN 'H' THEN 'Housing Record or Group Quarters Unit'
 		WHEN 'P' THEN 'Person Record'
-	END AS "Record Type",
+	END AS RT,
 	CASE SERIALNO
 		WHEN '2022GQ0000001' THEN 'GQ Unique identifier'
 		WHEN '2022HU0000001' THEN 'HU Unique identifier'
-	END AS "Housing unit/GQ person serial number",
+	END AS SERIALNO,
 	CASE DIVISION
 		WHEN '0' THEN 'Puerto Rico'
 		WHEN '1' THEN 'New England - Northeast region'
@@ -22,17 +22,17 @@ SELECT
 		WHEN '7' THEN 'West South Central - South Region'
 		WHEN '8' THEN 'Mountain - West region'
 		WHEN '9' THEN 'Pacific - West region'
-	END AS "Division code based on 2010 Census definitions Division code based on 2020 Census definitions",
+	END AS DIVISION,
 	CASE PUMA
 		WHEN '00100' THEN 'Public use microdata area codes'
-	END AS "Public use microdata area code (PUMA) based on 2020 Census definition (areas with population of 100,000 or more, use with ST for unique code)",
+	END AS PUMA,
 	CASE REGION
 		WHEN '1' THEN 'Northeast'
 		WHEN '2' THEN 'Midwest'
 		WHEN '3' THEN 'South'
 		WHEN '4' THEN 'West'
 		WHEN '9' THEN 'Puerto Rico'
-	END AS "Region code based on 2020 Census definitions",
+	END AS REGION,
 	CASE ST
 		WHEN '01' THEN 'Alabama or AL'
 		WHEN '02' THEN 'Alaska or AK'
@@ -86,36 +86,36 @@ SELECT
 		WHEN '55' THEN 'Wisconsin or WI'
 		WHEN '56' THEN 'Wyoming or WY'
 		WHEN '72' THEN 'Puerto Rico or PR'
-	END AS "State Code based on 2020 Census definitions",
+	END AS ST,
 	CASE ADJHSG
 		WHEN '1000000' THEN '2022 factor - 1.000000'
-	END AS "Adjustment factor for housing dollar amounts (6 implied decimal places)",
+	END AS ADJHSG,
 	CASE ADJINC
 		WHEN '1042311' THEN '2022 factor - 1.042311'
-	END AS "Adjustment factor for income and earnings dollar amounts (6 implied decimal places)",
+	END AS ADJINC,
     WGTP,
 	CASE NP
 		WHEN '0' THEN 'Vacant unit'
 		WHEN '1' THEN 'One person in household or any person in group quarters'
 		WHEN '2' THEN 'Number of persons in household'
-	END AS "Number of persons in this household",
+	END AS NP,
 	CASE TYPEHUGQ
 		WHEN '1' THEN 'Housing unit'
 		WHEN '2' THEN 'Institutional group quarters'
 		WHEN '3' THEN 'Noninstitutional group quarters'
-	END AS "Type of unit",
+	END AS TYPEHUGQ,
 	CASE ACCESSINET
 		WHEN 'b' THEN 'Not applicable - GQ or vacant'
 		WHEN '1' THEN 'Yes, by paying a cell phone company or Internet service provider'
 		WHEN '2' THEN 'Yes, without paying a cell phone company or Internet service provider'
 		WHEN '3' THEN 'No access to the Internet at this house, apartment, or mobile home'
-	END AS "Access to the Internet",
+	END AS ACCESSINET,
 	CASE ACR
 		WHEN 'b' THEN 'Not applicable - GQ or not a one-family house or mobile home'
 		WHEN '1' THEN 'House on less than one acre'
 		WHEN '2' THEN 'House on one to less than ten acres'
 		WHEN '3' THEN 'House on ten or more acres'
-	END AS "Lot size",
+	END AS ACR,
 	CASE AGS
 		WHEN 'b' THEN 'Not applicable - GQ or vacant or not a one family house or mobile home or less than 1 acre'
 		WHEN '1' THEN 'None'
@@ -124,16 +124,16 @@ SELECT
 		WHEN '4' THEN '$ 2500 - $ 4999'
 		WHEN '5' THEN '$ 5000 - $ 9999'
 		WHEN '6' THEN '$10000+'
-	END AS "Sales of Agriculture Products (yearly sales, no adjustment factor is applied)",
+	END AS AGS,
 	CASE BATH
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '1' THEN 'Yes'
 		WHEN '2' THEN 'No'
-	END AS "Bathtub or shower",
+	END AS BATH,
 	CASE BDSP
 		WHEN 'bb' THEN 'Not applicable - GQ'
 		WHEN '0' THEN '0 to 99 bedrooms - Top-coded'
-	END AS "Number of bedrooms",
+	END AS BDSP,
 	CASE BLD
 		WHEN 'bb' THEN 'Not applicable - GQ'
 		WHEN '01' THEN 'Mobile home or trailer'
@@ -146,62 +146,62 @@ SELECT
 		WHEN '08' THEN '20-49 Apartments'
 		WHEN '09' THEN '50 or more apartments'
 		WHEN '10' THEN 'Boat, RV, van, etc.'
-	END AS "Units in structure",
+	END AS BLD,
 	CASE BROADBND
 		WHEN 'b' THEN 'Not applicable - GQ or vacant or no paid access to the internet'
 		WHEN '1' THEN 'Yes'
 		WHEN '2' THEN 'No'
-	END AS "Cellular data plan for a smartphone or other mobile device",
+	END AS BROADBND,
 	CASE COMPOTHX
 		WHEN 'b' THEN 'Not applicable - GQ or vacant'
 		WHEN '1' THEN 'Yes'
 		WHEN '2' THEN 'No'
-	END AS "Other computer equipment",
+	END AS COMPOTHX,
 	CASE CONP
 		WHEN 'bbbb' THEN 'Not applicable - GQ or vacant units or not owned or being bought'
 		WHEN '0' THEN '$0 - $9999 - Rounded and top-coded'
-	END AS "Condominium fee (monthly amount, use ADJHSG to adjust CONP to constant dollars)",
+	END AS CONP,
 	CASE DIALUP
 		WHEN 'b' THEN 'Not applicable - GQ or vacant or no paid access to the internet'
 		WHEN '1' THEN 'Yes'
 		WHEN '2' THEN 'No'
-	END AS "Dial-up service",
+	END AS DIALUP,
 	CASE ELEFP
 		WHEN 'b' THEN 'Not applicable - GQ or vacant'
 		WHEN '1' THEN 'Included in rent or in condo fee'
 		WHEN '2' THEN 'No charge or electricity not used'
 		WHEN '3' THEN 'Valid monthly electricity cost in ELEP'
-	END AS "Electricity cost flag variable",
+	END AS ELEFP,
 	CASE ELEP
 		WHEN 'bbbb' THEN 'Not applicable - GQ or vacant or included in rent or in condo fee or no charge or electricity not used'
 		WHEN '3' THEN '$3 to $9999 - Rounded and top-coded'
-	END AS "Electricity cost (monthly cost, use ADJHSG to adjust ELEP to constant dollars)",
+	END AS ELEP,
 	CASE FS
 		WHEN 'b' THEN 'Not applicable - vacant'
 		WHEN '1' THEN 'Yes'
 		WHEN '2' THEN 'No'
-	END AS "Yearly food stamp/Supplemental Nutrition Assistance Program (SNAP) recipiency",
+	END AS FS,
 	CASE FULFP
 		WHEN 'b' THEN 'Not applicable - GQ or vacant'
 		WHEN '1' THEN 'Included in rent or in condo fee'
 		WHEN '2' THEN 'No charge or fuel other than gas or electricity not used'
 		WHEN '3' THEN 'Valid annual fuel cost in FULP'
-	END AS "Fuel cost flag variable",
+	END AS FULFP,
 	CASE FULP
 		WHEN 'bbbb' THEN 'Not applicable - GQ or vacant or included in rent or in condo fee or no charge or fuel other than gas or electricity not used'
 		WHEN '3' THEN '$3 to $9999 - Rounded and top-coded'
-	END AS "Fuel cost (yearly cost for fuels other than gas and electricity, use ADJHSG to adjust FULP to constant dollars)",
+	END AS FULP,
 	CASE GASFP
 		WHEN 'b' THEN 'Not applicable - GQ or vacant'
 		WHEN '1' THEN 'Included in rent or in condo fee'
 		WHEN '2' THEN 'Included in electricity payment'
 		WHEN '3' THEN 'No charge or gas not used'
 		WHEN '4' THEN 'Valid monthly gas cost in GASP'
-	END AS "Gas cost flag variable",
+	END AS GASFP,
 	CASE GASP
 		WHEN 'bbbb' THEN 'Not applicable - GQ or vacant or included in rent or in condo fee or included in electricity payment or no charge or gas not used'
 		WHEN '4' THEN '$4 to $9999 - Rounded and top-coded'
-	END AS "Gas cost (monthly cost, use ADJHSG to adjust GASP to constant dollars)",
+	END AS GASP,
 	CASE HFL
 		WHEN 'b' THEN 'Not applicable - GQ or vacant'
 		WHEN '1' THEN 'Utility gas'
@@ -213,130 +213,130 @@ SELECT
 		WHEN '7' THEN 'Solar energy'
 		WHEN '8' THEN 'Other fuel'
 		WHEN '9' THEN 'No fuel used'
-	END AS "House heating fuel",
+	END AS HFL,
 	CASE HISPEED
 		WHEN 'b' THEN 'Not applicable - GQ or vacant or no paid access to the internet'
 		WHEN '1' THEN 'Yes'
 		WHEN '2' THEN 'No'
-	END AS "Broadband (high speed) Internet service such as cable, fiber optic, or DSL service",
+	END AS HISPEED,
 	CASE HOTWAT
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '1' THEN 'Yes'
 		WHEN '2' THEN 'No'
 		WHEN '9' THEN 'Case is from the United States, HOTWAT not applicable'
-	END AS "Water heater (Puerto Rico only)",
+	END AS HOTWAT,
 	CASE INSP
 		WHEN 'bbbbb' THEN 'Not applicable - GQ or vacant or not owned or being bought'
 		WHEN '0' THEN 'None'
 		WHEN '1' THEN '$1 to $10000 - Rounded and top-coded'
-	END AS "Fire/hazard/flood insurance (yearly amount, use ADJHSG to adjust INSP to constant dollars)",
+	END AS INSP,
 	CASE LAPTOP
 		WHEN 'b' THEN 'Not applicable - GQ or vacant'
 		WHEN '1' THEN 'Yes'
 		WHEN '2' THEN 'No'
-	END AS "Laptop or desktop",
+	END AS LAPTOP,
 	CASE MHP
 		WHEN 'bbbbb' THEN 'Not applicable - GQ or vacant or not owned or being bought or  not mobile home'
 		WHEN '0' THEN 'None'
 		WHEN '1' THEN '$1 to $99999 - Rounded and top-coded'
-	END AS "Mobile home costs (yearly amount, use ADJHSG to adjust MHP to constant dollars)",
+	END AS MHP,
 	CASE MRGI
 		WHEN 'b' THEN 'Not applicable - GQ or vacant or not owned or being bought or not mortgaged'
 		WHEN '1' THEN 'Yes, insurance included in payment'
 		WHEN '2' THEN 'No, insurance paid separately or no insurance'
-	END AS "First mortgage payment includes fire/hazard/flood insurance",
+	END AS MRGI,
 	CASE MRGP
 		WHEN 'bbbbb' THEN 'Not applicable - GQ or vacant or not owned or being bought or not mortgaged'
 		WHEN '1' THEN '$1 to $99999 - Rounded and top-coded'
-	END AS "First mortgage payment (monthly amount, use ADJHSG to adjust MRGP to constant dollars)",
+	END AS MRGP,
 	CASE MRGT
 		WHEN 'b' THEN 'Not applicable - GQ or vacant or not owned or being bought or not mortgaged'
 		WHEN '1' THEN 'Yes, taxes included in payment'
 		WHEN '2' THEN 'No, taxes paid separately or taxes not required'
-	END AS "First mortgage payment includes real estate taxes",
+	END AS MRGT,
 	CASE MRGX
 		WHEN 'b' THEN 'Not applicable - GQ or vacant or not owned or being bought'
 		WHEN '1' THEN 'Mortgage, deed of trust, or similar debt'
 		WHEN '2' THEN 'Contract to purchase'
 		WHEN '3' THEN 'None'
-	END AS "First mortgage status",
+	END AS MRGX,
 	CASE OTHSVCEX
 		WHEN 'b' THEN 'Not applicable - GQ or vacant or no paid access to the internet'
 		WHEN '1' THEN 'Yes'
 		WHEN '2' THEN 'No'
-	END AS "Other Internet service",
+	END AS OTHSVCEX,
 	CASE REFR
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '1' THEN 'Yes'
 		WHEN '2' THEN 'No'
-	END AS "Refrigerator",
+	END AS REFR,
 	CASE RMSP
 		WHEN 'bb' THEN 'Not applicable - GQ'
 		WHEN '1' THEN 'Rooms - Top-coded'
-	END AS "Number of rooms",
+	END AS RMSP,
 	CASE RNTM
 		WHEN 'b' THEN 'Not applicable - GQ or vacant units, except for rent and rented, not occupied or owned or being bought or occupied without rent payment'
 		WHEN '1' THEN 'Yes'
 		WHEN '2' THEN 'No'
-	END AS "Meals included in rent",
+	END AS RNTM,
 	CASE RNTP
 		WHEN 'bbbbb' THEN 'Not applicable - GQ or vacant units, except for rent and rented, not occupied or owned or being bought or occupied without rent payment'
 		WHEN '1' THEN '$1 to $99999 - Rounded and top-coded'
-	END AS "Monthly rent (use ADJHSG to adjust RNTP to constant dollars)",
+	END AS RNTP,
 	CASE RWAT
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '1' THEN 'Yes'
 		WHEN '2' THEN 'No'
 		WHEN '9' THEN 'Case is from Puerto Rico, RWAT not applicable'
-	END AS "Hot and cold running water",
+	END AS RWAT,
 	CASE RWATPR
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '1' THEN 'Yes'
 		WHEN '2' THEN 'No'
 		WHEN '9' THEN 'Case is from the United States, RWATPR not applicable'
-	END AS "Running water",
+	END AS RWATPR,
 	CASE SATELLITE
 		WHEN 'b' THEN 'Not applicable - GQ or vacant or no paid access to the internet'
 		WHEN '1' THEN 'Yes'
 		WHEN '2' THEN 'No'
-	END AS "Satellite Internet service",
+	END AS SATELLITE,
 	CASE SINK
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '1' THEN 'Yes'
 		WHEN '2' THEN 'No'
-	END AS "Sink with a faucet",
+	END AS SINK,
 	CASE SMARTPHONE
 		WHEN 'b' THEN 'Not applicable - GQ or vacant'
 		WHEN '1' THEN 'Yes'
 		WHEN '2' THEN 'No'
-	END AS "Smartphone",
+	END AS SMARTPHONE,
 	CASE SMP
 		WHEN 'bbbbb' THEN 'Not applicable - GQ or vacant or not owned or being bought or no second or junior mortgages or home equity loans'
 		WHEN '0' THEN 'No regular payment'
 		WHEN '1' THEN '$1 to $99999 - Rounded and top-coded'
-	END AS "Total payment on all second and junior mortgages and home equity loans (monthly amount, use ADJHSG to adjust SMP to constant dollars)",
+	END AS SMP,
 	CASE STOV
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '1' THEN 'Yes'
 		WHEN '2' THEN 'No'
-	END AS "Stove or range",
+	END AS STOV,
 	CASE TABLET
 		WHEN 'b' THEN 'Not applicable - GQ or vacant'
 		WHEN '1' THEN 'Yes'
 		WHEN '2' THEN 'No'
-	END AS "Tablet or other portable wireless computer",
+	END AS TABLET,
 	CASE TEL
 		WHEN 'b' THEN 'Not applicable - GQ or vacant'
 		WHEN '1' THEN 'Yes'
 		WHEN '2' THEN 'No'
-	END AS "Telephone service",
+	END AS TEL,
 	CASE TEN
 		WHEN 'b' THEN 'Not applicable - GQ or vacant'
 		WHEN '1' THEN 'Owned with mortgage or loan - include home equity loans'
 		WHEN '2' THEN 'Owned free and clear'
 		WHEN '3' THEN 'Rented'
 		WHEN '4' THEN 'Occupied without payment of rent'
-	END AS "Tenure",
+	END AS TEN,
 	CASE VACDUR
 		WHEN 'b' THEN 'Not applicable - GQ or occupied'
 		WHEN '1' THEN 'Less than 1 month'
@@ -346,7 +346,7 @@ SELECT
 		WHEN '5' THEN '6 up to 12 months'
 		WHEN '6' THEN '12 up to 24 months'
 		WHEN '7' THEN '24 months or more'
-	END AS "Vacancy duration",
+	END AS VACDUR,
 	CASE VACOTH
 		WHEN 'bb' THEN 'Not applicable - GQ or occupied or vacant with a response for VACS besides other vacant'
 		WHEN ' 1' THEN 'Foreclosure'
@@ -360,7 +360,7 @@ SELECT
 		WHEN ' 9' THEN 'Extended absence'
 		WHEN '10' THEN 'Abandoned or possibly to be demolished or possibly condemned'
 		WHEN '11' THEN 'Other'
-	END AS "Other vacancy status",
+	END AS VACOTH,
 	CASE VACS
 		WHEN 'b' THEN 'Not applicable - GQ or occupied'
 		WHEN '1' THEN 'For rent'
@@ -370,11 +370,11 @@ SELECT
 		WHEN '5' THEN 'For seasonal or recreational or occasional use'
 		WHEN '6' THEN 'For migrant workers'
 		WHEN '7' THEN 'Other vacant'
-	END AS "Vacancy status",
+	END AS VACS,
 	CASE VALP
 		WHEN 'bbbbbbb' THEN 'Not applicable - GQ or vacant units, except for-sale-only and sold, not occupied or not owned or being bought'
 		WHEN '1' THEN '$1 to $9999999 - Rounded and top-coded'
-	END AS "Property value",
+	END AS VALP,
 	CASE VEH
 		WHEN 'b' THEN 'Not applicable - GQ or vacant'
 		WHEN '0' THEN 'No vehicles'
@@ -384,17 +384,17 @@ SELECT
 		WHEN '4' THEN '4 vehicles'
 		WHEN '5' THEN '5 vehicles'
 		WHEN '6' THEN '6 or more vehicles'
-	END AS "Vehicles (1 ton or less) available",
+	END AS VEH,
 	CASE WATFP
 		WHEN 'b' THEN 'Not applicable - GQ or vacant'
 		WHEN '1' THEN 'Included in rent or in condo fee'
 		WHEN '2' THEN 'No charge'
 		WHEN '3' THEN 'Valid annual water cost in WATP'
-	END AS "Water cost flag variable",
+	END AS WATFP,
 	CASE WATP
 		WHEN 'bbbb' THEN 'Not applicable - GQ or vacant or included in rent or in condo fee or no charge'
 		WHEN '3' THEN '$3 to $9999 - Rounded and top-coded'
-	END AS "Water cost (yearly cost, use ADJHSG to adjust WATP to constant dollars)",
+	END AS WATP,
 	CASE YRBLT
 		WHEN 'bbbb' THEN 'Not applicable - GQ'
 		WHEN '1939' THEN '1939 or earlier'
@@ -409,37 +409,37 @@ SELECT
 		WHEN '2020' THEN '2020'
 		WHEN '2021' THEN '2021'
 		WHEN '2022' THEN '2022'
-	END AS "When structure first built",
+	END AS YRBLT,
 	CASE CPLT
 		WHEN 'b' THEN 'Not applicable - GQ or vacant or non-couple households'
 		WHEN '1' THEN 'Opposite-sex husband or wife or spouse household'
 		WHEN '2' THEN 'Same-sex husband or wife or spouse household'
 		WHEN '3' THEN 'Opposite-sex unmarried partner household'
 		WHEN '4' THEN 'Same-sex unmarried partner household'
-	END AS "Couple Type",
+	END AS CPLT,
 	CASE FINCP
 		WHEN 'bbbbbbb' THEN 'Not applicable - GQ or vacant'
 		WHEN '0' THEN 'No family income'
 		WHEN '-59999' THEN 'Loss of -$59,999 or more'
 		WHEN '-59998' THEN 'Loss of $1 to -$59,998'
 		WHEN '1' THEN 'Total family income in dollars - Components are rounded'
-	END AS "Family income (past 12 months, use ADJINC to adjust FINCP to constant dollars)",
+	END AS FINCP,
 	CASE FPARC
 		WHEN 'b' THEN 'Not applicable - GQ or vacant or not a family'
 		WHEN '1' THEN 'With related children under 5 years only'
 		WHEN '2' THEN 'With related children 5 to 17 years only'
 		WHEN '3' THEN 'With related children under 5 years and 5 to 17 years'
 		WHEN '4' THEN 'No related children'
-	END AS "Family presence and age of related children",
+	END AS FPARC,
 	CASE GRNTP
 		WHEN 'bbbbb' THEN 'Not applicable - GQ or vacant or owned or being bought or occupied without rent payment'
 		WHEN '1' THEN '$1 - $99999 - Components are rounded'
-	END AS "Gross rent (monthly amount, use ADJHSG to adjust GRNTP to constant dollars)",
+	END AS GRNTP,
 	CASE GRPIP
 		WHEN 'bbb' THEN 'Not applicable - GQ or vacant or owned or being bought or occupied without rent payment or no household income'
 		WHEN '1' THEN '1 percent to 100 percent'
 		WHEN '101' THEN '101 percent or more'
-	END AS "Gross rent as a percentage of household income past 12 months",
+	END AS GRPIP,
 	CASE HHL
 		WHEN 'b' THEN 'Not applicable - GQ or vacant'
 		WHEN '1' THEN 'English only'
@@ -447,7 +447,7 @@ SELECT
 		WHEN '3' THEN 'Other Indo-European languages'
 		WHEN '4' THEN 'Asian and Pacific Island languages'
 		WHEN '5' THEN 'Other language'
-	END AS "Household language",
+	END AS HHL,
 	CASE HHLANP
 		WHEN 'bbbb' THEN 'Not applicable - GQ or vacant'
 		WHEN '1000' THEN 'Jamaican Creole English'
@@ -579,11 +579,11 @@ SELECT
 		WHEN '7300' THEN 'Other Central and South American languages'
 		WHEN '9500' THEN 'English only household'
 		WHEN '9999' THEN 'Other and unspecified languages'
-	END AS "Detailed household language",
+	END AS HHLANP,
 	CASE HHLDRAGEP
 		WHEN 'bb' THEN 'Not applicable - GQ or vacant'
 		WHEN '15' THEN '15 to 99 years - Top-coded'
-	END AS "Age of the householder",
+	END AS HHLDRAGEP,
 	CASE HHLDRHISP
 		WHEN 'bb' THEN 'Not applicable - GQ or vacant'
 		WHEN '01' THEN 'Not Spanish or Hispanic or Latino'
@@ -610,7 +610,7 @@ SELECT
 		WHEN '22' THEN 'Other South American'
 		WHEN '23' THEN 'Spaniard'
 		WHEN '24' THEN 'All Other Spanish or Hispanic or Latino'
-	END AS "Recoded detailed Hispanic origin of the householder",
+	END AS HHLDRHISP,
 	CASE HHLDRRAC1P
 		WHEN 'b' THEN 'Not applicable - GQ or vacant'
 		WHEN '1' THEN 'White alone'
@@ -622,7 +622,7 @@ SELECT
 		WHEN '7' THEN 'Native Hawaiian and Other Pacific Islander alone'
 		WHEN '8' THEN 'Some Other Race alone'
 		WHEN '9' THEN 'Two or More Races'
-	END AS "Recoded detailed race code of the householder",
+	END AS HHLDRRAC1P,
 	CASE HHT
 		WHEN 'b' THEN 'Not applicable - GQ or vacant'
 		WHEN '1' THEN 'Married couple household'
@@ -632,7 +632,7 @@ SELECT
 		WHEN '5' THEN 'Nonfamily household: Male householder: Not living alone'
 		WHEN '6' THEN 'Nonfamily household: Female householder: Living alone'
 		WHEN '7' THEN 'Nonfamily household: Female householder: Not living alone'
-	END AS "Household/family type",
+	END AS HHT,
 	CASE HHT2
 		WHEN 'bb' THEN 'Not applicable - GQ or vacant'
 		WHEN '01' THEN 'Married couple household with children of the householder less than 18'
@@ -647,55 +647,55 @@ SELECT
 		WHEN '10' THEN 'Male householder, no spouse or partner present, with children of the householder less than 18'
 		WHEN '11' THEN 'Male householder, no spouse or partner present, with relatives, no children of the householder less than 18'
 		WHEN '12' THEN 'Male householder, no spouse or partner present, only nonrelatives present'
-	END AS "Household/family type (includes cohabiting)",
+	END AS HHT2,
 	CASE HINCP
 		WHEN 'bbbbbbb' THEN 'Not applicable - GQ or vacant'
 		WHEN '0' THEN 'No household income'
 		WHEN '-59999' THEN 'Loss of -$59,999 or more'
 		WHEN '-59998' THEN 'Loss of $1 to -$59,998'
 		WHEN '1' THEN 'Total household income in dollars - Components are rounded'
-	END AS "Household income (past 12 months, use ADJINC to adjust HINCP to constant dollars)",
+	END AS HINCP,
 	CASE HUGCL
 		WHEN 'b' THEN 'Not applicable - GQ or vacant'
 		WHEN '0' THEN 'Household without grandparent living with grandchildren'
 		WHEN '1' THEN 'Household with grandparent living with grandchildren'
-	END AS "Household with grandparent living with grandchildren",
+	END AS HUGCL,
 	CASE HUPAC
 		WHEN 'b' THEN 'Not applicable - GQ or vacant'
 		WHEN '1' THEN 'With children under 6 years only'
 		WHEN '2' THEN 'With children 6 to 17 years only'
 		WHEN '3' THEN 'With children under 6 years and 6 to 17 years'
 		WHEN '4' THEN 'No children'
-	END AS "HH presence and age of children",
+	END AS HUPAC,
 	CASE HUPAOC
 		WHEN 'b' THEN 'Not applicable - GQ or vacant'
 		WHEN '1' THEN 'Presence of own children under 6 years only'
 		WHEN '2' THEN 'Presence of own children 6 to 17 years only'
 		WHEN '3' THEN 'Presence of own children under 6 years and 6 to 17 years'
 		WHEN '4' THEN 'No own children present'
-	END AS "HH presence and age of own children",
+	END AS HUPAOC,
 	CASE HUPARC
 		WHEN 'b' THEN 'Not applicable - GQ or vacant'
 		WHEN '1' THEN 'Presence of related children under 6 years only'
 		WHEN '2' THEN 'Presence of related children 6 to 17 years only'
 		WHEN '3' THEN 'Presence of related children under 6 years and 6 to 17 years'
 		WHEN '4' THEN 'No related children present'
-	END AS "HH presence and age of related children",
+	END AS HUPARC,
 	CASE KIT
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '1' THEN 'Yes, has stove or range, refrigerator, and sink with a faucet'
 		WHEN '2' THEN 'No'
-	END AS "Complete kitchen facilities",
+	END AS KIT,
 	CASE LNGI
 		WHEN 'b' THEN 'Not applicable - GQ or vacant'
 		WHEN '1' THEN 'At least one person in the household 14 and over speaks English only or speaks English very well'
 		WHEN '2' THEN 'No one in the household 14 and over speaks English only or speaks English very well'
-	END AS "Limited English speaking household",
+	END AS LNGI,
 	CASE MULTG
 		WHEN 'b' THEN 'Not applicable - GQ or Vacant'
 		WHEN '1' THEN 'No, not a multigenerational household'
 		WHEN '2' THEN 'Yes, is a multigenerational household'
-	END AS "Multigenerational household",
+	END AS MULTG,
 	CASE MV
 		WHEN 'b' THEN 'Not applicable - GQ or vacant'
 		WHEN '1' THEN '12 months or less'
@@ -705,36 +705,36 @@ SELECT
 		WHEN '5' THEN '10 to 19 years'
 		WHEN '6' THEN '20 to 29 years'
 		WHEN '7' THEN '30 years or more'
-	END AS "When moved into this house or apartment",
+	END AS MV,
 	CASE NOC
 		WHEN 'bb' THEN 'Not applicable - GQ or vacant'
 		WHEN '0' THEN 'No own children'
 		WHEN '1' THEN 'Number of own children in household'
-	END AS "Number of own children in household (unweighted)",
+	END AS NOC,
 	CASE NPF
 		WHEN 'bb' THEN 'Not applicable - GQ or vacant or non-family household'
 		WHEN '2' THEN 'Number of persons in family'
-	END AS "Number of persons in family (unweighted)",
+	END AS NPF,
 	CASE NPP
 		WHEN 'b' THEN 'Not applicable - GQ or vacant'
 		WHEN '0' THEN 'Not a grandparent headed household with no parent present'
 		WHEN '1' THEN 'Grandparent headed household with no parent present'
-	END AS "Grandparent headed household with no parent present",
+	END AS NPP,
 	CASE NR
 		WHEN 'b' THEN 'Not applicable - GQ or vacant'
 		WHEN '0' THEN 'None'
 		WHEN '1' THEN '1 or more nonrelatives'
-	END AS "Presence of nonrelative in household",
+	END AS NR,
 	CASE NRC
 		WHEN 'bb' THEN 'Not applicable - GQ or vacant'
 		WHEN '0' THEN 'No related children'
 		WHEN '1' THEN 'Number of related children in household'
-	END AS "Number of related children in household (unweighted)",
+	END AS NRC,
 	CASE OCPIP
 		WHEN 'bbb' THEN 'Not applicable - GQ or vacant or not owned or being bought or  no household income'
 		WHEN '1' THEN '1 percent to 100 percent'
 		WHEN '101' THEN '101 percent or more'
-	END AS "Selected monthly owner costs as a percentage of household income during the past 12 months",
+	END AS OCPIP,
 	CASE PARTNER
 		WHEN 'b' THEN 'Not applicable - GQ or vacant'
 		WHEN '0' THEN 'No unmarried partner in household'
@@ -742,80 +742,80 @@ SELECT
 		WHEN '2' THEN 'Male householder, female partner'
 		WHEN '3' THEN 'Female householder, female partner'
 		WHEN '4' THEN 'Female householder, male partner'
-	END AS "Unmarried partner household",
+	END AS PARTNER,
 	CASE PLM
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '1' THEN 'Yes, has hot and cold running water, and a bathtub or shower'
 		WHEN '2' THEN 'No'
 		WHEN '9' THEN 'Case is from Puerto Rico, PLM recode not applicable'
-	END AS "Complete plumbing facilities",
+	END AS PLM,
 	CASE PLMPRP
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '1' THEN 'Yes, has running water, and a bathtub or shower'
 		WHEN '2' THEN 'No'
 		WHEN '9' THEN 'Case is from the United States, PLMPRP not applicable'
-	END AS "Complete plumbing facilities for Puerto Rico",
+	END AS PLMPRP,
 	CASE PSF
 		WHEN 'b' THEN 'Not applicable - GQ or vacant'
 		WHEN '0' THEN 'No subfamilies'
 		WHEN '1' THEN '1 or more subfamilies'
-	END AS "Presence of subfamilies in household",
+	END AS PSF,
 	CASE R18
 		WHEN 'b' THEN 'Not applicable - GQ or vacant'
 		WHEN '0' THEN 'No person under 18 in household'
 		WHEN '1' THEN '1 or more persons under 18 in household'
-	END AS "Presence of persons under 18 years in household (unweighted)",
+	END AS R18,
 	CASE R60
 		WHEN 'b' THEN 'Not applicable - GQ or vacant'
 		WHEN '0' THEN 'No person 60 and over'
 		WHEN '1' THEN '1 person 60 and over'
 		WHEN '2' THEN '2 or more persons 60 and over'
-	END AS "Presence of persons 60 years and over in household (unweighted)",
+	END AS R60,
 	CASE R65
 		WHEN 'b' THEN 'Not applicable - GQ or vacant'
 		WHEN '0' THEN 'No person 65 and over'
 		WHEN '1' THEN '1 person 65 and over'
 		WHEN '2' THEN '2 or more persons 65 and over'
-	END AS "Presence of persons 65 years and over in household (unweighted)",
+	END AS R65,
 	CASE RESMODE
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '1' THEN 'Mail'
 		WHEN '2' THEN 'CATI or CAPI'
 		WHEN '3' THEN 'Internet'
-	END AS "Response mode",
+	END AS RESMODE,
 	CASE SMOCP
 		WHEN 'bbbbb' THEN 'Not applicable - GQ or vacant or not owned or being bought'
 		WHEN '0' THEN 'None'
 		WHEN '1' THEN '$1 - $99999 - Components are rounded'
-	END AS "Selected monthly owner costs (use ADJHSG to adjust SMOCP to constant dollars)",
+	END AS SMOCP,
 	CASE SMX
 		WHEN 'b' THEN 'Not applicable - GQ or vacant or not owned or being bought'
 		WHEN '1' THEN 'Yes, a second mortgage'
 		WHEN '2' THEN 'Yes, a home equity loan'
 		WHEN '3' THEN 'No'
 		WHEN '4' THEN 'Both a second mortgage and a home equity loan'
-	END AS "Second or junior mortgage or home equity loan status",
+	END AS SMX,
 	CASE SRNT
 		WHEN 'b' THEN 'Not applicable - GQ or vacant units, except for-rent-only and rented, not occupied or owned or being bought'
 		WHEN '0' THEN 'A single-family home on 10 or more acres.'
 		WHEN '1' THEN 'A single-family home on less than 10 acres or any other type of building, including mobile homes, with no regard to acreage.'
-	END AS "Specified rental unit",
+	END AS SRNT,
 	CASE SVAL
 		WHEN 'b' THEN 'Not applicable - GQ or  vacant units, except for-sale-only and sold, not occupied or not owned or being bought'
 		WHEN '0' THEN 'A single family home on 10 or more acres or any other type of building, including mobile homes, with no regard to acreage.'
 		WHEN '1' THEN 'A single family home on less than 10 acres.'
-	END AS "Specified owner unit",
+	END AS SVAL,
 	CASE TAXAMT
 		WHEN 'bbbbb' THEN 'Not applicable - GQ or vacant or not owned or being bought'
 		WHEN '0' THEN '$0 to $57500 - rounded and top-coded'
-	END AS "Property taxes (yearly real estate taxes)",
+	END AS TAXAMT,
 	CASE WIF
 		WHEN 'b' THEN 'Not applicable - GQ or vacant or non-family household'
 		WHEN '0' THEN 'No workers'
 		WHEN '1' THEN '1 worker'
 		WHEN '2' THEN '2 workers'
 		WHEN '3' THEN '3 or more workers in family'
-	END AS "Workers in family during the past 12 months",
+	END AS WIF,
 	CASE WKEXREL
 		WHEN 'bb' THEN 'Not applicable - GQ or vacant or not a family'
 		WHEN '01' THEN 'Householder and spouse worked FT'
@@ -833,7 +833,7 @@ SELECT
 		WHEN '13' THEN 'Female householder worked FT; no spouse present'
 		WHEN '14' THEN 'Female householder worked less than FT; no spouse present'
 		WHEN '15' THEN 'Female householder did not work; no spouse present'
-	END AS "Work experience of householder and spouse",
+	END AS WKEXREL,
 	CASE WORKSTAT
 		WHEN 'bb' THEN 'Not applicable - GQ or not a family household or same-sex married-couple families'
 		WHEN '01' THEN 'Husband and wife both in labor force, both employed or in Armed Forces'
@@ -851,291 +851,291 @@ SELECT
 		WHEN '13' THEN 'Female householder with no husband present, householder in labor force, employed or in Armed Forces'
 		WHEN '14' THEN 'Female householder with no husband present, householder in labor force and unemployed'
 		WHEN '15' THEN 'Female householder with no husband present, householder not in labor force'
-	END AS "Work status of householder or spouse in family households",
+	END AS WORKSTAT,
 	CASE FACCESSP
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Access to the Internet allocation flag",
+	END AS FACCESSP,
 	CASE FACRP
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Lot size allocation flag",
+	END AS FACRP,
 	CASE FAGSP
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Sales of Agricultural Products allocation flag",
+	END AS FAGSP,
 	CASE FBATHP
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Bathtub or shower allocation flag",
+	END AS FBATHP,
 	CASE FBDSP
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Number of bedrooms allocation flag",
+	END AS FBDSP,
 	CASE FBLDP
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Units in structure allocation flag",
+	END AS FBLDP,
 	CASE FBROADBNDP
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Cellular data plan for a smartphone or other mobile device allocation flag",
+	END AS FBROADBNDP,
 	CASE FCOMPOTHXP
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Other computer equipment allocation flag",
+	END AS FCOMPOTHXP,
 	CASE FCONP
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Condominium fee (monthly amount) allocation flag",
+	END AS FCONP,
 	CASE FDIALUPP
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Dial-up service allocation flag",
+	END AS FDIALUPP,
 	CASE FELEP
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Electricity cost (monthly cost) allocation flag",
+	END AS FELEP,
 	CASE FFINCP
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Family income (past 12 months) allocation flag",
+	END AS FFINCP,
 	CASE FFSP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Yearly food stamp/Supplemental Nutrition Assistance Program (SNAP) recipiency allocation flag",
+	END AS FFSP,
 	CASE FFULP
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Fuel cost (yearly cost for fuels other than gas and electricity) allocation flag",
+	END AS FFULP,
 	CASE FGASP
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Gas cost (monthly cost) allocation flag",
+	END AS FGASP,
 	CASE FGRNTP
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Gross rent (monthly amount) allocation flag",
+	END AS FGRNTP,
 	CASE FHFLP
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "House heating fuel allocation flag",
+	END AS FHFLP,
 	CASE FHINCP
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Household income (past 12 months) allocation flag",
+	END AS FHINCP,
 	CASE FHISPEEDP
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Broadband (high speed) Internet service such as cable, fiber optic, or DSL service allocation flag",
+	END AS FHISPEEDP,
 	CASE FHOTWATP
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Water heater allocation flag (Puerto Rico only)",
+	END AS FHOTWATP,
 	CASE FINSP
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Fire, hazard, flood insurance (yearly amount) allocation flag",
+	END AS FINSP,
 	CASE FKITP
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Complete kitchen facilities allocation flag",
+	END AS FKITP,
 	CASE FLAPTOPP
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Laptop or desktop allocation flag",
+	END AS FLAPTOPP,
 	CASE FMHP
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Mobile home costs (yearly amount) allocation flag",
+	END AS FMHP,
 	CASE FMRGIP
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "First mortgage payment includes fire, hazard, flood insurance allocation flag",
+	END AS FMRGIP,
 	CASE FMRGP
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "First mortgage payment (monthly amount) allocation flag",
+	END AS FMRGP,
 	CASE FMRGTP
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "First mortgage payment includes real estate taxes allocation flag",
+	END AS FMRGTP,
 	CASE FMRGXP
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "First mortgage status allocation flag",
+	END AS FMRGXP,
 	CASE FMVP
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "When moved into this house or apartment allocation flag",
+	END AS FMVP,
 	CASE FOTHSVCEXP
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Other Internet service allocation flag",
+	END AS FOTHSVCEXP,
 	CASE FPLMP
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Complete plumbing facilities allocation flag",
+	END AS FPLMP,
 	CASE FPLMPRP
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Complete plumbing facilities allocation flag for Puerto Rico",
+	END AS FPLMPRP,
 	CASE FREFRP
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Refrigerator allocation flag",
+	END AS FREFRP,
 	CASE FRMSP
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Number of rooms allocation flag",
+	END AS FRMSP,
 	CASE FRNTMP
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Meals included in rent allocation flag",
+	END AS FRNTMP,
 	CASE FRNTP
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Monthly rent allocation flag",
+	END AS FRNTP,
 	CASE FRWATP
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Hot and cold running water allocation flag",
+	END AS FRWATP,
 	CASE FRWATPRP
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Running water allocation flag for Puerto Rico",
+	END AS FRWATPRP,
 	CASE FSATELLITEP
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Satellite Internet service allocation flag",
+	END AS FSATELLITEP,
 	CASE FSINKP
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Sink with a faucet allocation flag",
+	END AS FSINKP,
 	CASE FSMARTPHONP
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Smartphone allocation flag",
+	END AS FSMARTPHONP,
 	CASE FSMOCP
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Selected monthly owner cost allocation flag",
+	END AS FSMOCP,
 	CASE FSMP
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Total payment on second and junior mortgages and home equity loans (monthly amount) allocation flag",
+	END AS FSMP,
 	CASE FSMXHP
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Home equity loan status allocation flag",
+	END AS FSMXHP,
 	CASE FSMXSP
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Second mortgage status allocation flag",
+	END AS FSMXSP,
 	CASE FSTOVP
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Stove or range allocation flag",
+	END AS FSTOVP,
 	CASE FTABLETP
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Tablet or other portable wireless computer allocation flag",
+	END AS FTABLETP,
 	CASE FTAXP
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Property taxes (yearly amount) allocation flag",
+	END AS FTAXP,
 	CASE FTELP
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Telephone service allocation flag",
+	END AS FTELP,
 	CASE FTENP
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Tenure allocation flag",
+	END AS FTENP,
 	CASE FVACDURP
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Vacancy duration allocation flag",
+	END AS FVACDURP,
 	CASE FVACOTHP
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Other vacancy allocation flag",
+	END AS FVACOTHP,
 	CASE FVACSP
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Vacancy status allocation flag",
+	END AS FVACSP,
 	CASE FVALP
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Property value allocation flag",
+	END AS FVALP,
 	CASE FVEHP
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Vehicles available allocation flag",
+	END AS FVEHP,
 	CASE FWATP
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Water cost (yearly cost) allocation flag",
+	END AS FWATP,
 	CASE FYRBLTP
 		WHEN 'b' THEN 'Not applicable - GQ'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "When structure first built allocation flag",
+	END AS FYRBLTP,
     WGTP1,
     WGTP2,
     WGTP3,
@@ -1217,5 +1217,6 @@ SELECT
     WGTP79,
     WGTP80
 FROM read_csv('/Users/me/data/american_community_survey/2022/1-Year/csv_hme/psam_h23.csv', 
-              skip=1,
-              columns={'RT': 'VARCHAR', 'SERIALNO': 'VARCHAR', 'DIVISION': 'VARCHAR', 'PUMA': 'VARCHAR', 'REGION': 'VARCHAR', 'ST': 'VARCHAR', 'ADJHSG': 'VARCHAR', 'ADJINC': 'VARCHAR', 'WGTP': 'VARCHAR', 'NP': 'VARCHAR', 'TYPEHUGQ': 'VARCHAR', 'ACCESSINET': 'VARCHAR', 'ACR': 'VARCHAR', 'AGS': 'VARCHAR', 'BATH': 'VARCHAR', 'BDSP': 'VARCHAR', 'BLD': 'VARCHAR', 'BROADBND': 'VARCHAR', 'COMPOTHX': 'VARCHAR', 'CONP': 'VARCHAR', 'DIALUP': 'VARCHAR', 'ELEFP': 'VARCHAR', 'ELEP': 'VARCHAR', 'FS': 'VARCHAR', 'FULFP': 'VARCHAR', 'FULP': 'VARCHAR', 'GASFP': 'VARCHAR', 'GASP': 'VARCHAR', 'HFL': 'VARCHAR', 'HISPEED': 'VARCHAR', 'HOTWAT': 'VARCHAR', 'INSP': 'VARCHAR', 'LAPTOP': 'VARCHAR', 'MHP': 'VARCHAR', 'MRGI': 'VARCHAR', 'MRGP': 'VARCHAR', 'MRGT': 'VARCHAR', 'MRGX': 'VARCHAR', 'OTHSVCEX': 'VARCHAR', 'REFR': 'VARCHAR', 'RMSP': 'VARCHAR', 'RNTM': 'VARCHAR', 'RNTP': 'VARCHAR', 'RWAT': 'VARCHAR', 'RWATPR': 'VARCHAR', 'SATELLITE': 'VARCHAR', 'SINK': 'VARCHAR', 'SMARTPHONE': 'VARCHAR', 'SMP': 'VARCHAR', 'STOV': 'VARCHAR', 'TABLET': 'VARCHAR', 'TEL': 'VARCHAR', 'TEN': 'VARCHAR', 'VACDUR': 'VARCHAR', 'VACOTH': 'VARCHAR', 'VACS': 'VARCHAR', 'VALP': 'VARCHAR', 'VEH': 'VARCHAR', 'WATFP': 'VARCHAR', 'WATP': 'VARCHAR', 'YRBLT': 'VARCHAR', 'CPLT': 'VARCHAR', 'FINCP': 'VARCHAR', 'FPARC': 'VARCHAR', 'GRNTP': 'VARCHAR', 'GRPIP': 'VARCHAR', 'HHL': 'VARCHAR', 'HHLANP': 'VARCHAR', 'HHLDRAGEP': 'VARCHAR', 'HHLDRHISP': 'VARCHAR', 'HHLDRRAC1P': 'VARCHAR', 'HHT': 'VARCHAR', 'HHT2': 'VARCHAR', 'HINCP': 'VARCHAR', 'HUGCL': 'VARCHAR', 'HUPAC': 'VARCHAR', 'HUPAOC': 'VARCHAR', 'HUPARC': 'VARCHAR', 'KIT': 'VARCHAR', 'LNGI': 'VARCHAR', 'MULTG': 'VARCHAR', 'MV': 'VARCHAR', 'NOC': 'VARCHAR', 'NPF': 'VARCHAR', 'NPP': 'VARCHAR', 'NR': 'VARCHAR', 'NRC': 'VARCHAR', 'OCPIP': 'VARCHAR', 'PARTNER': 'VARCHAR', 'PLM': 'VARCHAR', 'PLMPRP': 'VARCHAR', 'PSF': 'VARCHAR', 'R18': 'VARCHAR', 'R60': 'VARCHAR', 'R65': 'VARCHAR', 'RESMODE': 'VARCHAR', 'SMOCP': 'VARCHAR', 'SMX': 'VARCHAR', 'SRNT': 'VARCHAR', 'SVAL': 'VARCHAR', 'TAXAMT': 'VARCHAR', 'WIF': 'VARCHAR', 'WKEXREL': 'VARCHAR', 'WORKSTAT': 'VARCHAR', 'FACCESSP': 'VARCHAR', 'FACRP': 'VARCHAR', 'FAGSP': 'VARCHAR', 'FBATHP': 'VARCHAR', 'FBDSP': 'VARCHAR', 'FBLDP': 'VARCHAR', 'FBROADBNDP': 'VARCHAR', 'FCOMPOTHXP': 'VARCHAR', 'FCONP': 'VARCHAR', 'FDIALUPP': 'VARCHAR', 'FELEP': 'VARCHAR', 'FFINCP': 'VARCHAR', 'FFSP': 'VARCHAR', 'FFULP': 'VARCHAR', 'FGASP': 'VARCHAR', 'FGRNTP': 'VARCHAR', 'FHFLP': 'VARCHAR', 'FHINCP': 'VARCHAR', 'FHISPEEDP': 'VARCHAR', 'FHOTWATP': 'VARCHAR', 'FINSP': 'VARCHAR', 'FKITP': 'VARCHAR', 'FLAPTOPP': 'VARCHAR', 'FMHP': 'VARCHAR', 'FMRGIP': 'VARCHAR', 'FMRGP': 'VARCHAR', 'FMRGTP': 'VARCHAR', 'FMRGXP': 'VARCHAR', 'FMVP': 'VARCHAR', 'FOTHSVCEXP': 'VARCHAR', 'FPLMP': 'VARCHAR', 'FPLMPRP': 'VARCHAR', 'FREFRP': 'VARCHAR', 'FRMSP': 'VARCHAR', 'FRNTMP': 'VARCHAR', 'FRNTP': 'VARCHAR', 'FRWATP': 'VARCHAR', 'FRWATPRP': 'VARCHAR', 'FSATELLITEP': 'VARCHAR', 'FSINKP': 'VARCHAR', 'FSMARTPHONP': 'VARCHAR', 'FSMOCP': 'VARCHAR', 'FSMP': 'VARCHAR', 'FSMXHP': 'VARCHAR', 'FSMXSP': 'VARCHAR', 'FSTOVP': 'VARCHAR', 'FTABLETP': 'VARCHAR', 'FTAXP': 'VARCHAR', 'FTELP': 'VARCHAR', 'FTENP': 'VARCHAR', 'FVACDURP': 'VARCHAR', 'FVACOTHP': 'VARCHAR', 'FVACSP': 'VARCHAR', 'FVALP': 'VARCHAR', 'FVEHP': 'VARCHAR', 'FWATP': 'VARCHAR', 'FYRBLTP': 'VARCHAR', 'WGTP1': 'VARCHAR', 'WGTP2': 'VARCHAR', 'WGTP3': 'VARCHAR', 'WGTP4': 'VARCHAR', 'WGTP5': 'VARCHAR', 'WGTP6': 'VARCHAR', 'WGTP7': 'VARCHAR', 'WGTP8': 'VARCHAR', 'WGTP9': 'VARCHAR', 'WGTP10': 'VARCHAR', 'WGTP11': 'VARCHAR', 'WGTP12': 'VARCHAR', 'WGTP13': 'VARCHAR', 'WGTP14': 'VARCHAR', 'WGTP15': 'VARCHAR', 'WGTP16': 'VARCHAR', 'WGTP17': 'VARCHAR', 'WGTP18': 'VARCHAR', 'WGTP19': 'VARCHAR', 'WGTP20': 'VARCHAR', 'WGTP21': 'VARCHAR', 'WGTP22': 'VARCHAR', 'WGTP23': 'VARCHAR', 'WGTP24': 'VARCHAR', 'WGTP25': 'VARCHAR', 'WGTP26': 'VARCHAR', 'WGTP27': 'VARCHAR', 'WGTP28': 'VARCHAR', 'WGTP29': 'VARCHAR', 'WGTP30': 'VARCHAR', 'WGTP31': 'VARCHAR', 'WGTP32': 'VARCHAR', 'WGTP33': 'VARCHAR', 'WGTP34': 'VARCHAR', 'WGTP35': 'VARCHAR', 'WGTP36': 'VARCHAR', 'WGTP37': 'VARCHAR', 'WGTP38': 'VARCHAR', 'WGTP39': 'VARCHAR', 'WGTP40': 'VARCHAR', 'WGTP41': 'VARCHAR', 'WGTP42': 'VARCHAR', 'WGTP43': 'VARCHAR', 'WGTP44': 'VARCHAR', 'WGTP45': 'VARCHAR', 'WGTP46': 'VARCHAR', 'WGTP47': 'VARCHAR', 'WGTP48': 'VARCHAR', 'WGTP49': 'VARCHAR', 'WGTP50': 'VARCHAR', 'WGTP51': 'VARCHAR', 'WGTP52': 'VARCHAR', 'WGTP53': 'VARCHAR', 'WGTP54': 'VARCHAR', 'WGTP55': 'VARCHAR', 'WGTP56': 'VARCHAR', 'WGTP57': 'VARCHAR', 'WGTP58': 'VARCHAR', 'WGTP59': 'VARCHAR', 'WGTP60': 'VARCHAR', 'WGTP61': 'VARCHAR', 'WGTP62': 'VARCHAR', 'WGTP63': 'VARCHAR', 'WGTP64': 'VARCHAR', 'WGTP65': 'VARCHAR', 'WGTP66': 'VARCHAR', 'WGTP67': 'VARCHAR', 'WGTP68': 'VARCHAR', 'WGTP69': 'VARCHAR', 'WGTP70': 'VARCHAR', 'WGTP71': 'VARCHAR', 'WGTP72': 'VARCHAR', 'WGTP73': 'VARCHAR', 'WGTP74': 'VARCHAR', 'WGTP75': 'VARCHAR', 'WGTP76': 'VARCHAR', 'WGTP77': 'VARCHAR', 'WGTP78': 'VARCHAR', 'WGTP79': 'VARCHAR', 'WGTP80': 'VARCHAR'})
+              parallel=False,
+              all_varchar=True,
+              auto_detect=True)

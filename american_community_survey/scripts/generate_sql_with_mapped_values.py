@@ -74,12 +74,14 @@ for csv_path in df_csv_paths["csv_path"]:
                     f"WHEN '{clean_enum_value(code)}' THEN '{clean_enum_value(label)}'"
                     for code, label in data_dict[header]["Values"].items()
                 ])
-                mapped_column = f"""CASE {header}\n\t\t{value_mapping}\n\tEND AS \"{description}\""""
+                # mapped_column = f"""CASE {header}\n\t\t{value_mapping}\n\tEND AS \"{description}\""""
+                mapped_column = f"""CASE {header}\n\t\t{value_mapping}\n\tEND AS {header}"""
                 sql_select_parts.append(f"\t{mapped_column},")
         elif header in data_dict:
             # Direct mapping for columns without "Values"
             description = data_dict[header]["Description"].replace("'", "''")
-            sql_select_parts.append(f'    {header} AS "{description}",')
+            # sql_select_parts.append(f'    {header} AS "{description}",')
+            sql_select_parts.append(f'    {header},')
         else:
             sql_select_parts.append(f"    {header},")
     
@@ -92,8 +94,9 @@ for csv_path in df_csv_paths["csv_path"]:
 {{{{ config(materialized='external', location=var('output_path') + '/{materialized_name}.parquet') }}}}
 {sql_select_statement}
 FROM read_csv('{csv_path}', 
-              skip=1,
-              columns={{{columns}}})"""
+              parallel=False,
+              all_varchar=True,
+              auto_detect=True)"""
 
     sql_file_path = os.path.join(models_dir, f"{materialized_name}_mapped.sql")
     with open(sql_file_path, "w") as sql_file:

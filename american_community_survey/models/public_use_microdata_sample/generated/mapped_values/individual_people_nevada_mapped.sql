@@ -6,11 +6,11 @@ SELECT
 	CASE RT
 		WHEN 'H' THEN 'Housing Record or Group Quarters Unit'
 		WHEN 'P' THEN 'Person Record'
-	END AS "Record Type",
+	END AS RT,
 	CASE SERIALNO
 		WHEN '2022GQ0000001' THEN 'GQ Unique identifier'
 		WHEN '2022HU0000001' THEN 'HU Unique identifier'
-	END AS "Housing unit/GQ person serial number",
+	END AS SERIALNO,
 	CASE DIVISION
 		WHEN '0' THEN 'Puerto Rico'
 		WHEN '1' THEN 'New England - Northeast region'
@@ -22,20 +22,20 @@ SELECT
 		WHEN '7' THEN 'West South Central - South Region'
 		WHEN '8' THEN 'Mountain - West region'
 		WHEN '9' THEN 'Pacific - West region'
-	END AS "Division code based on 2010 Census definitions Division code based on 2020 Census definitions",
+	END AS DIVISION,
 	CASE SPORDER
 		WHEN '01' THEN 'Person number'
-	END AS "Person number",
+	END AS SPORDER,
 	CASE PUMA
 		WHEN '00100' THEN 'Public use microdata area codes'
-	END AS "Public use microdata area code (PUMA) based on 2020 Census definition (areas with population of 100,000 or more, use with ST for unique code)",
+	END AS PUMA,
 	CASE REGION
 		WHEN '1' THEN 'Northeast'
 		WHEN '2' THEN 'Midwest'
 		WHEN '3' THEN 'South'
 		WHEN '4' THEN 'West'
 		WHEN '9' THEN 'Puerto Rico'
-	END AS "Region code based on 2020 Census definitions",
+	END AS REGION,
 	CASE ST
 		WHEN '01' THEN 'Alabama or AL'
 		WHEN '02' THEN 'Alaska or AK'
@@ -89,22 +89,22 @@ SELECT
 		WHEN '55' THEN 'Wisconsin or WI'
 		WHEN '56' THEN 'Wyoming or WY'
 		WHEN '72' THEN 'Puerto Rico or PR'
-	END AS "State Code based on 2020 Census definitions",
+	END AS ST,
 	CASE ADJINC
 		WHEN '1042311' THEN '2022 factor - 1.042311'
-	END AS "Adjustment factor for income and earnings dollar amounts (6 implied decimal places)",
+	END AS ADJINC,
     PWGTP,
 	CASE AGEP
 		WHEN '0' THEN 'Under 1 year'
 		WHEN '1' THEN '1 to 99 years - Top-coded'
-	END AS "Age",
+	END AS AGEP,
 	CASE CIT
 		WHEN '1' THEN 'Born in the United States'
 		WHEN '2' THEN 'Born in Puerto Rico, Guam, the U.S. Virgin Islands, or Northern Marianas'
 		WHEN '3' THEN 'Born abroad of U.S. citizen parent or parents'
 		WHEN '4' THEN 'U.S. citizen by naturalization'
 		WHEN '5' THEN 'Not a U.S. citizen'
-	END AS "Citizenship status",
+	END AS CIT,
 	CASE CITWP
 		WHEN 'bbbb' THEN 'Not applicable - Not eligible - not naturalized'
 		WHEN '1947' THEN '1947 or earlier - Bottom-coded'
@@ -181,7 +181,7 @@ SELECT
 		WHEN '2020' THEN '2020'
 		WHEN '2021' THEN '2021'
 		WHEN '2022' THEN '2022'
-	END AS "Year of naturalization write-in",
+	END AS CITWP,
 	CASE COW
 		WHEN 'b' THEN 'Not applicable - less than 16 years old or NILF who last worked more than 5 years ago or never worked'
 		WHEN '1' THEN 'Employee of a private for-profit company or business, or of an individual, for wages, salary, or commissions'
@@ -193,30 +193,30 @@ SELECT
 		WHEN '7' THEN 'Self-employed in own incorporated business, professional practice or farm'
 		WHEN '8' THEN 'Working without pay in family business or farm'
 		WHEN '9' THEN 'Unemployed and last worked 5 years ago or earlier or never worked'
-	END AS "Class of worker",
+	END AS COW,
 	CASE DDRS
 		WHEN 'b' THEN 'Not applicable - Less than 5 years old'
 		WHEN '1' THEN 'Yes'
 		WHEN '2' THEN 'No'
-	END AS "Self-care difficulty",
+	END AS DDRS,
 	CASE DEAR
 		WHEN '1' THEN 'Yes'
 		WHEN '2' THEN 'No'
-	END AS "Hearing difficulty",
+	END AS DEAR,
 	CASE DEYE
 		WHEN '1' THEN 'Yes'
 		WHEN '2' THEN 'No'
-	END AS "Vision difficulty",
+	END AS DEYE,
 	CASE DOUT
 		WHEN 'b' THEN 'Not applicable - Less than 15 years old'
 		WHEN '1' THEN 'Yes'
 		WHEN '2' THEN 'No'
-	END AS "Independent living difficulty",
+	END AS DOUT,
 	CASE DPHY
 		WHEN 'b' THEN 'Not applicable - Less than 5 years old'
 		WHEN '1' THEN 'Yes'
 		WHEN '2' THEN 'No'
-	END AS "Ambulatory difficulty",
+	END AS DPHY,
 	CASE DRAT
 		WHEN 'b' THEN 'Not applicable - No service-connected disability or never served in military'
 		WHEN '1' THEN '0 percent'
@@ -225,34 +225,34 @@ SELECT
 		WHEN '4' THEN '50 or 60 percent'
 		WHEN '5' THEN '70, 80, 90, or 100 percent'
 		WHEN '6' THEN 'Not reported'
-	END AS "Veteran service-connected disability rating (percentage)",
+	END AS DRAT,
 	CASE DRATX
 		WHEN 'b' THEN 'Not applicable - Less than 17 years old or never served in military'
 		WHEN '1' THEN 'Yes'
 		WHEN '2' THEN 'No'
-	END AS "Veteran service-connected disability rating (checkbox)",
+	END AS DRATX,
 	CASE DREM
 		WHEN 'b' THEN 'Not applicable - Less than 5 years old'
 		WHEN '1' THEN 'Yes'
 		WHEN '2' THEN 'No'
-	END AS "Cognitive difficulty",
+	END AS DREM,
 	CASE ENG
 		WHEN 'b' THEN 'Not applicable - less than 5 years old or speaks only English'
 		WHEN '1' THEN 'Very well'
 		WHEN '2' THEN 'Well'
 		WHEN '3' THEN 'Not well'
 		WHEN '4' THEN 'Not at all'
-	END AS "Ability to speak English",
+	END AS ENG,
 	CASE FER
 		WHEN 'b' THEN 'Not applicable - less than 15 years or greater than 50 years or  male'
 		WHEN '1' THEN 'Yes'
 		WHEN '2' THEN 'No'
-	END AS "Gave birth to child within the past 12 months",
+	END AS FER,
 	CASE GCL
 		WHEN 'b' THEN 'Not applicable - less than 30 years or institutional GQ'
 		WHEN '1' THEN 'Yes'
 		WHEN '2' THEN 'No'
-	END AS "Grandparents living with grandchildren",
+	END AS GCL,
 	CASE GCM
 		WHEN 'b' THEN 'Not applicable - less than 30 years or grandparent not responsible for grandchild or institutional GQ'
 		WHEN '1' THEN 'Less than 6 months'
@@ -260,55 +260,55 @@ SELECT
 		WHEN '3' THEN '1 or 2 years'
 		WHEN '4' THEN '3 or 4 years'
 		WHEN '5' THEN '5 or more years'
-	END AS "Length of time responsible for grandchildren",
+	END AS GCM,
 	CASE GCR
 		WHEN 'b' THEN 'Not applicable - less than 30 years or institutional GQ or grandparent not living with grandchild'
 		WHEN '1' THEN 'Yes'
 		WHEN '2' THEN 'No'
-	END AS "Grandparents responsible for grandchildren",
+	END AS GCR,
 	CASE HIMRKS
 		WHEN '0' THEN 'Categorically ineligible for subsidy'
 		WHEN '1' THEN 'Direct purchase coverage, with premium subsidy'
 		WHEN '2' THEN 'Direct purchase coverage, without a premium subsidy'
-	END AS "Subsidized Marketplace Coverage",
+	END AS HIMRKS,
 	CASE HINS1
 		WHEN '1' THEN 'Yes'
 		WHEN '2' THEN 'No'
-	END AS "Insurance through a current or former employer or union",
+	END AS HINS1,
 	CASE HINS2
 		WHEN '1' THEN 'Yes'
 		WHEN '2' THEN 'No'
-	END AS "Insurance purchased directly from an insurance company",
+	END AS HINS2,
 	CASE HINS3
 		WHEN '1' THEN 'Yes'
 		WHEN '2' THEN 'No'
-	END AS "Medicare, for people 65 and older, or people with certain disabilities",
+	END AS HINS3,
 	CASE HINS4
 		WHEN '1' THEN 'Yes'
 		WHEN '2' THEN 'No'
-	END AS "Medicaid, Medical Assistance, or any kind of government-assistance plan for those with low incomes or a disability",
+	END AS HINS4,
 	CASE HINS5
 		WHEN '1' THEN 'Yes'
 		WHEN '2' THEN 'No'
-	END AS "TRICARE or other military health care",
+	END AS HINS5,
 	CASE HINS6
 		WHEN '1' THEN 'Yes'
 		WHEN '2' THEN 'No'
-	END AS "VA (enrolled for VA health care)",
+	END AS HINS6,
 	CASE HINS7
 		WHEN '1' THEN 'Yes'
 		WHEN '2' THEN 'No'
-	END AS "Indian Health Service",
+	END AS HINS7,
 	CASE INTP
 		WHEN 'bbbbbb' THEN 'Not applicable - less than 15 years old'
 		WHEN '0' THEN 'None'
 		WHEN '-10000' THEN 'Loss of $4 to $10000 - Rounded and bottom-coded'
 		WHEN '4' THEN '$4 to $999999 - Rounded and top-coded'
-	END AS "Interest, dividends, and net rental income past 12 months (use ADJINC to adjust to constant dollars)",
+	END AS INTP,
 	CASE JWMNP
 		WHEN 'bbb' THEN 'Not applicable - not a worker or worker who worked at home'
 		WHEN '1' THEN '1 to 200 minutes to get to work - Top-coded'
-	END AS "Travel time to work",
+	END AS JWMNP,
 	CASE JWRIP
 		WHEN 'bb' THEN 'Not applicable - not a worker or worker whose means of transportation to work was not car, truck, or van'
 		WHEN '1' THEN 'Drove alone'
@@ -321,7 +321,7 @@ SELECT
 		WHEN '8' THEN 'In 8-person carpool'
 		WHEN '9' THEN 'In 9-person carpool'
 		WHEN '10' THEN 'In 10-person or more carpool - Top-coded'
-	END AS "Vehicle occupancy",
+	END AS JWRIP,
 	CASE JWTRNS
 		WHEN 'bb' THEN 'Not applicable - not a worker-not in the labor force, including persons under 16 years; unemployed; employed, with a job but not at work; Armed Forces, with a job but not at work'
 		WHEN '01' THEN 'Car, truck, or van'
@@ -336,40 +336,40 @@ SELECT
 		WHEN '10' THEN 'Walked'
 		WHEN '11' THEN 'Worked from home'
 		WHEN '12' THEN 'Other method'
-	END AS "Means of transportation to work",
+	END AS JWTRNS,
 	CASE LANX
 		WHEN 'b' THEN 'Not applicable - less than 5 years old'
 		WHEN '1' THEN 'Yes, speaks another language'
 		WHEN '2' THEN 'No, speaks only English'
-	END AS "Language other than English spoken at home",
+	END AS LANX,
 	CASE MAR
 		WHEN '1' THEN 'Married'
 		WHEN '2' THEN 'Widowed'
 		WHEN '3' THEN 'Divorced'
 		WHEN '4' THEN 'Separated'
 		WHEN '5' THEN 'Never married or under 15 years old'
-	END AS "Marital status",
+	END AS MAR,
 	CASE MARHD
 		WHEN 'b' THEN 'Not applicable - age less than 15 years; never married'
 		WHEN '1' THEN 'Yes'
 		WHEN '2' THEN 'No'
-	END AS "Divorced in the past 12 months",
+	END AS MARHD,
 	CASE MARHM
 		WHEN 'b' THEN 'Not applicable - age less than 15 years; never married'
 		WHEN '1' THEN 'Yes'
 		WHEN '2' THEN 'No'
-	END AS "Married in the past 12 months",
+	END AS MARHM,
 	CASE MARHT
 		WHEN 'b' THEN 'Not applicable - age less than 15 years; never married'
 		WHEN '1' THEN 'One time'
 		WHEN '2' THEN 'Two times'
 		WHEN '3' THEN 'Three or more times'
-	END AS "Number of times married",
+	END AS MARHT,
 	CASE MARHW
 		WHEN 'b' THEN 'Not applicable - age less than 15 years; never married'
 		WHEN '1' THEN 'Yes'
 		WHEN '2' THEN 'No'
-	END AS "Widowed in the past 12 months",
+	END AS MARHW,
 	CASE MARHYP
 		WHEN 'bbbb' THEN 'Not applicable - age less than 15 years; never married'
 		WHEN '1943' THEN '1943 or earlier - Bottom-coded'
@@ -452,66 +452,66 @@ SELECT
 		WHEN '2020' THEN '2020'
 		WHEN '2021' THEN '2021'
 		WHEN '2022' THEN '2022'
-	END AS "Year last married",
+	END AS MARHYP,
 	CASE MIG
 		WHEN 'b' THEN 'Not applicable - less than 1 year old'
 		WHEN '1' THEN 'Yes, same house - nonmovers'
 		WHEN '2' THEN 'No, outside US and Puerto Rico'
 		WHEN '3' THEN 'No, different house in US or Puerto Rico'
-	END AS "Mobility status (lived here 1 year ago)",
+	END AS MIG,
 	CASE MIL
 		WHEN 'b' THEN 'Not applicable - less than 17 years old'
 		WHEN '1' THEN 'Now on active duty'
 		WHEN '2' THEN 'On active duty in the past, but not now'
 		WHEN '3' THEN 'Only on active duty for training in Reserves or National Guard'
 		WHEN '4' THEN 'Never served in the military'
-	END AS "Military service",
+	END AS MIL,
 	CASE MLPA
 		WHEN 'b' THEN 'Not applicable - less than 17 years old or no active duty'
 		WHEN '0' THEN 'Did not serve this period'
 		WHEN '1' THEN 'Served this period'
-	END AS "Served September 2001 or later",
+	END AS MLPA,
 	CASE MLPB
 		WHEN 'b' THEN 'Not applicable - less than 17 years old or no active duty'
 		WHEN '0' THEN 'Did not serve this period'
 		WHEN '1' THEN 'Served this period'
-	END AS "Served August 1990 - August 2001 (including Persian Gulf War)",
+	END AS MLPB,
 	CASE MLPCD
 		WHEN 'b' THEN 'Not applicable - less than 17 years old or no active duty'
 		WHEN '0' THEN 'Did not serve this period'
 		WHEN '1' THEN 'Served this period'
-	END AS "Served May 1975 - July 1990",
+	END AS MLPCD,
 	CASE MLPE
 		WHEN 'b' THEN 'Not applicable - less than 17 years old or no active duty'
 		WHEN '0' THEN 'Did not serve this period'
 		WHEN '1' THEN 'Served this period'
-	END AS "Served Vietnam era (August 1964 - April 1975)",
+	END AS MLPE,
 	CASE MLPFG
 		WHEN 'b' THEN 'Not applicable - less than 17 years old or no active duty'
 		WHEN '0' THEN 'Did not serve this period'
 		WHEN '1' THEN 'Served this period'
-	END AS "Served February 1955 - July 1964",
+	END AS MLPFG,
 	CASE MLPH
 		WHEN 'b' THEN 'Not applicable - less than 17 years old or no active duty'
 		WHEN '0' THEN 'Did not serve this period'
 		WHEN '1' THEN 'Served this period'
-	END AS "Served Korean War (July 1950 - January 1955)",
+	END AS MLPH,
 	CASE MLPIK
 		WHEN 'b' THEN 'Not applicable - less than 17 years old or no active duty'
 		WHEN '0' THEN 'Did not serve this period'
 		WHEN '1' THEN 'Served this period'
-	END AS "Peacetime service before July 1950",
+	END AS MLPIK,
 	CASE MLPJ
 		WHEN 'b' THEN 'Not applicable - less than 17 years old or no active duty'
 		WHEN '0' THEN 'Did not serve this period'
 		WHEN '1' THEN 'Served this period'
-	END AS "Served World War II (December 1941 - December 1946)",
+	END AS MLPJ,
 	CASE NWAB
 		WHEN 'b' THEN 'Not applicable - less than 16 years old or at work or on layoff'
 		WHEN '1' THEN 'Yes'
 		WHEN '2' THEN 'No'
 		WHEN '3' THEN 'Did not report'
-	END AS "Temporary absence from work (UNEDITED - See 'Employment Status Recode' (ESR))",
+	END AS NWAB,
 	CASE NWAV
 		WHEN 'b' THEN 'Not applicable - less than 16 years or at work or not looking'
 		WHEN '1' THEN 'Yes'
@@ -519,35 +519,35 @@ SELECT
 		WHEN '3' THEN 'No, other reasons'
 		WHEN '4' THEN 'No, unspecified'
 		WHEN '5' THEN 'Did not report'
-	END AS "Available for work (UNEDITED - See 'Employment Status Recode' (ESR))",
+	END AS NWAV,
 	CASE NWLA
 		WHEN 'b' THEN 'Not applicable - less than 16 years old or at work'
 		WHEN '1' THEN 'Yes'
 		WHEN '2' THEN 'No'
 		WHEN '3' THEN 'Did not report'
-	END AS "On layoff from work (UNEDITED - See 'Employment Status Recode' (ESR))",
+	END AS NWLA,
 	CASE NWLK
 		WHEN 'b' THEN 'Not applicable - less than 16 years old or at work or temporarily absent or informed of recall'
 		WHEN '1' THEN 'Yes'
 		WHEN '2' THEN 'No'
 		WHEN '3' THEN 'Did not report'
-	END AS "Looking for work (UNEDITED - See 'Employment Status Recode' (ESR))",
+	END AS NWLK,
 	CASE NWRE
 		WHEN 'b' THEN 'Not applicable - less than 16 years old or at work or not on layoff'
 		WHEN '1' THEN 'Yes'
 		WHEN '2' THEN 'No'
 		WHEN '3' THEN 'Did not report'
-	END AS "Informed of recall (UNEDITED - See 'Employment Status Recode' (ESR))",
+	END AS NWRE,
 	CASE OIP
 		WHEN 'bbbbbb' THEN 'Not applicable - less than 15 years old'
 		WHEN '0' THEN 'None'
 		WHEN '4' THEN '$4 to $99999 - Rounded and top-coded'
-	END AS "All other income past 12 months (use ADJINC to adjust to constant dollars)",
+	END AS OIP,
 	CASE PAP
 		WHEN 'bbbbb' THEN 'Not applicable - less than 15 years old'
 		WHEN '0' THEN 'None'
 		WHEN '4' THEN '$4 to $30000 - Rounded and top-coded'
-	END AS "Public assistance income past 12 months (use ADJINC to adjust to constant dollars)",
+	END AS PAP,
 	CASE RELSHIPP
 		WHEN '20' THEN 'Reference person'
 		WHEN '21' THEN 'Opposite-sex husband or wife or spouse'
@@ -568,18 +568,18 @@ SELECT
 		WHEN '36' THEN 'Other nonrelative'
 		WHEN '37' THEN 'Institutionalized group quarters population'
 		WHEN '38' THEN 'Noninstitutionalized group quarters population'
-	END AS "Relationship",
+	END AS RELSHIPP,
 	CASE RETP
 		WHEN 'bbbbbb' THEN 'Not applicable - less than 15 years old'
 		WHEN '0' THEN 'None'
 		WHEN '4' THEN '$4 to $999999 - Rounded and top-coded'
-	END AS "Retirement income past 12 months (use ADJINC to adjust to constant dollars)",
+	END AS RETP,
 	CASE SCH
 		WHEN 'b' THEN 'Not applicable - less than 3 years old'
 		WHEN '1' THEN 'No, has not attended in the last 3 months'
 		WHEN '2' THEN 'Yes, public school or public college'
 		WHEN '3' THEN 'Yes, private school or college or home school'
-	END AS "School enrollment",
+	END AS SCH,
 	CASE SCHG
 		WHEN 'bb' THEN 'Not applicable - not attending school'
 		WHEN '01' THEN 'Nursery school or preschool'
@@ -598,7 +598,7 @@ SELECT
 		WHEN '14' THEN 'Grade 12'
 		WHEN '15' THEN 'College undergraduate years - freshman to senior'
 		WHEN '16' THEN 'Graduate or professional school beyond a bachelors degree'
-	END AS "Grade level attending",
+	END AS SCHG,
 	CASE SCHL
 		WHEN 'bb' THEN 'Not applicable - less than 3 years old'
 		WHEN '01' THEN 'No schooling completed'
@@ -625,52 +625,52 @@ SELECT
 		WHEN '22' THEN 'Masters degree'
 		WHEN '23' THEN 'Professional degree beyond a bachelors degree'
 		WHEN '24' THEN 'Doctorate degree'
-	END AS "Educational attainment",
+	END AS SCHL,
 	CASE SEMP
 		WHEN 'bbbbbb' THEN 'Not applicable - less than 15 years old'
 		WHEN '0' THEN 'None'
 		WHEN '-10000' THEN 'Loss of $4 to $10000 - Rounded and bottom-coded'
 		WHEN '4' THEN '$ 4 to $999999 - Rounded and top-coded'
-	END AS "Self-employment income past 12 months (use ADJINC to adjust SEMP to constant dollars)",
+	END AS SEMP,
 	CASE SEX
 		WHEN '1' THEN 'Male'
 		WHEN '2' THEN 'Female'
-	END AS "Sex",
+	END AS SEX,
 	CASE SSIP
 		WHEN 'bbbbb' THEN 'Not applicable - less than 15 years old'
 		WHEN '0' THEN 'None'
 		WHEN '4' THEN '$4 to $30000 - Rounded and top-coded'
-	END AS "Supplementary Security Income past 12 months (use ADJINC to adjust SSIP to constant dollars)",
+	END AS SSIP,
 	CASE SSP
 		WHEN 'bbbbb' THEN 'Not applicable - less than 15 years old'
 		WHEN '0' THEN 'None'
 		WHEN '4' THEN '$4 to $55000 - Rounded and top-coded'
-	END AS "Social Security income past 12 months (use ADJINC to adjust SSP to constant dollars)",
+	END AS SSP,
 	CASE WAGP
 		WHEN 'bbbbbb' THEN 'Not applicable - less than 15 years old'
 		WHEN '0' THEN 'None'
 		WHEN '4' THEN '$4 to 999999 - Rounded and top-coded'
-	END AS "Wages or salary income past 12 months (use ADJINC to adjust WAGP to constant dollars)",
+	END AS WAGP,
 	CASE WKHP
 		WHEN 'bb' THEN 'Not applicable - less than 16 years old or did not work during the past 12 months'
 		WHEN '1' THEN '1 to 98 usual hours'
 		WHEN '99' THEN '99 or more usual hours'
-	END AS "Usual hours worked per week past 12 months",
+	END AS WKHP,
 	CASE WKL
 		WHEN 'b' THEN 'Not applicable - less than 16 years old'
 		WHEN '1' THEN 'Within the past 12 months'
 		WHEN '2' THEN '1-5 years ago'
 		WHEN '3' THEN 'Over 5 years ago or never worked'
-	END AS "When last worked",
+	END AS WKL,
 	CASE WKWN
 		WHEN 'bb' THEN 'Not applicable - less than 16 years old or did not work during the past 12 months'
 		WHEN '1' THEN '1 to 52 weeks worked during past 12 months'
-	END AS "Weeks worked during past 12 months",
+	END AS WKWN,
 	CASE WRK
 		WHEN 'b' THEN 'Not applicable - not reported'
 		WHEN '1' THEN 'Worked'
 		WHEN '2' THEN 'Did not work'
-	END AS "Worked last week",
+	END AS WRK,
 	CASE YOEP
 		WHEN 'bbbb' THEN 'Not applicable - Not eligible - Born in the US'
 		WHEN '1934' THEN '1934 or earlier - Bottom-coded'
@@ -755,13 +755,13 @@ SELECT
 		WHEN '2020' THEN '2020'
 		WHEN '2021' THEN '2021'
 		WHEN '2022' THEN '2022'
-	END AS "Year of entry",
+	END AS YOEP,
 	CASE ANC
 		WHEN '1' THEN 'Single'
 		WHEN '2' THEN 'Multiple'
 		WHEN '3' THEN 'Unclassified'
 		WHEN '4' THEN 'Not reported'
-	END AS "Ancestry recode",
+	END AS ANC,
 	CASE ANC1P
 		WHEN '001' THEN 'Alsatian'
 		WHEN '003' THEN 'Austrian'
@@ -997,7 +997,7 @@ SELECT
 		WHEN '997' THEN 'Other groups'
 		WHEN '998' THEN 'Other responses'
 		WHEN '999' THEN 'Not reported'
-	END AS "Recoded Detailed Ancestry - first entry",
+	END AS ANC1P,
 	CASE ANC2P
 		WHEN '001' THEN 'Alsatian'
 		WHEN '003' THEN 'Austrian'
@@ -1233,7 +1233,7 @@ SELECT
 		WHEN '997' THEN 'Other groups'
 		WHEN '998' THEN 'Other responses'
 		WHEN '999' THEN 'Not reported'
-	END AS "Recoded Detailed Ancestry - second entry",
+	END AS ANC2P,
 	CASE DECADE
 		WHEN 'b' THEN 'Not applicable - Born in the US'
 		WHEN '1' THEN 'Before 1950'
@@ -1244,11 +1244,11 @@ SELECT
 		WHEN '6' THEN '1990 - 1999'
 		WHEN '7' THEN '2000 - 2009'
 		WHEN '8' THEN '2010 or later'
-	END AS "Decade of entry",
+	END AS DECADE,
 	CASE DIS
 		WHEN '1' THEN 'With a disability'
 		WHEN '2' THEN 'Without a disability'
-	END AS "Disability recode",
+	END AS DIS,
 	CASE DRIVESP
 		WHEN 'b' THEN 'Not applicable - Nonworker or worker who does not drive to work'
 		WHEN '1' THEN '1.000 vehicles - Drove alone'
@@ -1257,7 +1257,7 @@ SELECT
 		WHEN '4' THEN '0.250 vehicles - In a 4-person carpool'
 		WHEN '5' THEN '0.200 vehicles - In a 5- or 6-person carpool'
 		WHEN '6' THEN '0.143 vehicles - In a 7-or-more person carpool'
-	END AS "Number of vehicles calculated from JWRI",
+	END AS DRIVESP,
 	CASE ESP
 		WHEN 'b' THEN 'Not applicable - not own child of householder, and not child in subfamily'
 		WHEN '1' THEN 'Living with two parents: Both parents in labor force'
@@ -1268,7 +1268,7 @@ SELECT
 		WHEN '6' THEN 'Living with father: Not in labor force'
 		WHEN '7' THEN 'Living with mother: In labor force'
 		WHEN '8' THEN 'Living with mother: Not in labor force'
-	END AS "Employment status of parents",
+	END AS ESP,
 	CASE ESR
 		WHEN 'b' THEN 'Not applicable - less than 16 years old'
 		WHEN '1' THEN 'Civilian employed, at work'
@@ -1277,7 +1277,7 @@ SELECT
 		WHEN '4' THEN 'Armed forces, at work'
 		WHEN '5' THEN 'Armed forces, with a job but not at work'
 		WHEN '6' THEN 'Not in labor force'
-	END AS "Employment status recode",
+	END AS ESR,
 	CASE FOD1P
 		WHEN 'bbbb' THEN 'Not applicable - less than bachelors degree'
 		WHEN '1100' THEN 'General Agriculture'
@@ -1452,7 +1452,7 @@ SELECT
 		WHEN '6299' THEN 'Miscellaneous Business And Medical Administration'
 		WHEN '6402' THEN 'History'
 		WHEN '6403' THEN 'United States History'
-	END AS "Recoded field of degree - first entry",
+	END AS FOD1P,
 	CASE FOD2P
 		WHEN 'bbbb' THEN 'Not applicable - less than bachelors degree'
 		WHEN '1100' THEN 'General Agriculture'
@@ -1627,11 +1627,11 @@ SELECT
 		WHEN '6299' THEN 'Miscellaneous Business And Medical Administration'
 		WHEN '6402' THEN 'History'
 		WHEN '6403' THEN 'United States History'
-	END AS "Recoded field of degree - second entry",
+	END AS FOD2P,
 	CASE HICOV
 		WHEN '1' THEN 'With health insurance coverage'
 		WHEN '2' THEN 'No health insurance coverage'
-	END AS "Health insurance coverage recode",
+	END AS HICOV,
 	CASE HISP
 		WHEN '01' THEN 'Not Spanish or Hispanic or Latino'
 		WHEN '02' THEN 'Mexican'
@@ -1657,7 +1657,7 @@ SELECT
 		WHEN '22' THEN 'Other South American'
 		WHEN '23' THEN 'Spaniard'
 		WHEN '24' THEN 'All Other Spanish or Hispanic or Latino'
-	END AS "Recoded detailed Hispanic origin",
+	END AS HISP,
 	CASE INDP
 		WHEN 'bbbb' THEN 'Not applicable - less than 16 years old or NILF who last worked more than 5 years ago or never worked'
 		WHEN '0170' THEN 'AGR-Crop Production'
@@ -1930,7 +1930,7 @@ SELECT
 		WHEN '9790' THEN 'MIL-Armed Forces, Branch Not Specified'
 		WHEN '9870' THEN 'MIL-Military Reserves Or National Guard'
 		WHEN '9920' THEN 'Unemployed, With No Work Experience In The Last 5 Years Or Earlier Or Never Worked'
-	END AS "Industry recode for 2018 and later based on 2017 IND codes",
+	END AS INDP,
 	CASE JWAP
 		WHEN 'bbb' THEN 'Not applicable - not a worker; worker who worked from home'
 		WHEN '001' THEN '12:00 a.m. to 12:04 a.m.'
@@ -2218,7 +2218,7 @@ SELECT
 		WHEN '283' THEN '11:45 p.m. to 11:49 p.m.'
 		WHEN '284' THEN '11:50 p.m. to 11:54 p.m.'
 		WHEN '285' THEN '11:55 p.m. to 11:59 p.m.'
-	END AS "Time of arrival at work - hour and minute",
+	END AS JWAP,
 	CASE JWDP
 		WHEN 'bbb' THEN 'Not applicable - not a worker; worker who worked from home'
 		WHEN '001' THEN '12:00 a.m. to 12:29 a.m.'
@@ -2371,7 +2371,7 @@ SELECT
 		WHEN '148' THEN '10:50 p.m. to 10:59 p.m.'
 		WHEN '149' THEN '11:00 p.m. to 11:29 p.m.'
 		WHEN '150' THEN '11:30 p.m. to 11:59 p.m.'
-	END AS "Time of departure for work - hour and minute",
+	END AS JWDP,
 	CASE LANP
 		WHEN 'bbbb' THEN 'Not applicable - GQ or vacant'
 		WHEN '1000' THEN 'Jamaican Creole English'
@@ -2502,13 +2502,13 @@ SELECT
 		WHEN '7124' THEN 'Other Native North American languages'
 		WHEN '7300' THEN 'Other Central and South American languages'
 		WHEN '9999' THEN 'Other and unspecified languages'
-	END AS "Language spoken at home",
+	END AS LANP,
 	CASE MIGPUMA
 		WHEN 'bbbbb' THEN 'Not applicable - person less than 1 year old or lived in same house 1 year ago'
 		WHEN '00001' THEN 'Did not live in the United States or in Puerto Rico one year ago'
 		WHEN '00002' THEN 'Lived in Puerto Rico one year ago and current residence is in the U.S.'
 		WHEN '00100' THEN 'Assigned Migration PUMA. Use with MIGSP.'
-	END AS "Migration PUMA based on 2020 Census definition",
+	END AS MIGPUMA,
 	CASE MIGSP
 		WHEN 'bbb' THEN 'Not applicable - person less than 1 year old or lived in same house 1 year ago'
 		WHEN '001' THEN 'Alabama or AL'
@@ -2618,7 +2618,7 @@ SELECT
 		WHEN '469' THEN 'Eastern Africa, Not Specified'
 		WHEN '501' THEN 'Australia'
 		WHEN '555' THEN 'Other US Island Areas, Oceania, Not Specified, or At Sea'
-	END AS "Migration recode - State or foreign country code",
+	END AS MIGSP,
 	CASE MSP
 		WHEN 'b' THEN 'Not applicable - age less than 15 years'
 		WHEN '1' THEN 'Now married, spouse present'
@@ -2627,7 +2627,7 @@ SELECT
 		WHEN '4' THEN 'Divorced'
 		WHEN '5' THEN 'Separated'
 		WHEN '6' THEN 'Never married'
-	END AS "Married, spouse present/spouse absent",
+	END AS MSP,
 	CASE NAICSP
 		WHEN 'bbbbbbbb' THEN 'Not applicable - less than 16 years old or NILF who last worked more than 5 years ago or never worked'
 		WHEN '111' THEN 'AGR-Crop Production'
@@ -2900,11 +2900,11 @@ SELECT
 		WHEN '92M2' THEN 'ADM-Administration Of Economic Programs And Space Research'
 		WHEN '92MP' THEN 'ADM-Justice, Public Order, And Safety Activities'
 		WHEN '999920' THEN 'Unemployed, With No Work Experience In The Last 5 Years Or Earlier Or Never Worked'
-	END AS "North American Industry Classification System (NAICS) recode for 2018 and later based on 2017 NAICS codes",
+	END AS NAICSP,
 	CASE NATIVITY
 		WHEN '1' THEN 'Native'
 		WHEN '2' THEN 'Foreign born'
-	END AS "Nativity",
+	END AS NATIVITY,
 	CASE NOP
 		WHEN 'b' THEN 'Not applicable - greater than 17 years old or not an own child of householder, and not child in subfamily'
 		WHEN '1' THEN 'Living with two parents: Both parents NATIVE'
@@ -2915,12 +2915,12 @@ SELECT
 		WHEN '6' THEN 'Living with father only: Father FOREIGN BORN'
 		WHEN '7' THEN 'Living with mother only: Mother NATIVE'
 		WHEN '8' THEN 'Living with mother only: Mother FOREIGN BORN'
-	END AS "Nativity of parent",
+	END AS NOP,
 	CASE OC
 		WHEN 'b' THEN 'Not applicable - in GQ'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Own child",
+	END AS OC,
 	CASE OCCP
 		WHEN 'bbbb' THEN 'Not applicable - less than 16 years old or NILF who last worked more than 5 years ago or never worked'
 		WHEN '0010' THEN 'MGR-Chief Executives And Legislators'
@@ -3453,28 +3453,28 @@ SELECT
 		WHEN '9825' THEN 'MIL-Military Enlisted Tactical Operations And Air or Weapons Specialists And Crew Members'
 		WHEN '9830' THEN 'MIL-Military, Rank Not Specified'
 		WHEN '9920' THEN 'Unemployed, With No Work Experience In The Last 5 Years Or Earlier Or Never Worked'
-	END AS "Occupation recode for 2018 and later based on 2018 OCC codes",
+	END AS OCCP,
 	CASE PAOC
 		WHEN 'b' THEN 'Not applicable - male or female under 16 years old or GQ'
 		WHEN '1' THEN 'Females with own children under 6 years only'
 		WHEN '2' THEN 'Females with own children 6 to 17 years only'
 		WHEN '3' THEN 'Females with own children under 6 years and 6 to 17 years'
 		WHEN '4' THEN 'Females with no own children'
-	END AS "Presence and age of own children",
+	END AS PAOC,
 	CASE PERNP
 		WHEN 'bbbbbbb' THEN 'Not applicable - less than 16 years old'
 		WHEN '0' THEN 'No earnings'
 		WHEN '-10000' THEN 'Loss of $10000 or more - Rounded and bottom- coded components'
 		WHEN '-9999' THEN 'Loss $1 to $9999 - Rounded components'
 		WHEN '1' THEN '$1 to $1999998 - Rounded and top-coded components'
-	END AS "Total person's earnings (use ADJINC to adjust to constant dollars)",
+	END AS PERNP,
 	CASE PINCP
 		WHEN 'bbbbbbb' THEN 'Not applicable - less than 15 years old'
 		WHEN '0' THEN 'None'
 		WHEN '-19998' THEN 'Loss of $19998 or more - Rounded and bottom- coded components'
 		WHEN '-19997' THEN 'Loss $1 to $19997 - Rounded components'
 		WHEN '1' THEN '$1 to $4209995 - Rounded and top-coded components'
-	END AS "Total person's income (use ADJINC to adjust to constant dollars)",
+	END AS PINCP,
 	CASE POBP
 		WHEN '001' THEN 'Alabama or AL'
 		WHEN '002' THEN 'Alaska or AK'
@@ -3699,17 +3699,17 @@ SELECT
 		WHEN '523' THEN 'Tonga'
 		WHEN '527' THEN 'Samoa'
 		WHEN '554' THEN 'Other US Island Areas, Oceania, Not Specified, or at Sea'
-	END AS "Place of birth (Recode)",
+	END AS POBP,
 	CASE POVPIP
 		WHEN 'bbb' THEN 'Not applicable - individuals who are under 15 and are either living in a housing unit but are unrelated to the householder or are living in select group quarters'
 		WHEN '0' THEN 'Below 501 percent'
 		WHEN '501' THEN '501 percent or more'
-	END AS "Income-to-poverty ratio recode",
+	END AS POVPIP,
 	CASE POWPUMA
 		WHEN 'bbbbb' THEN 'Not applicable - not a worker-not in the labor force, including persons under 16 years; unemployed; civilian employed, with a job not at work; Armed Forces, with a job but not at work'
 		WHEN '00001' THEN 'Did not work in the United States or in Puerto Rico'
 		WHEN '00100' THEN 'Assigned Place of work PUMA.  Use with POWSP.'
-	END AS "Place of work PUMA based on 2020 Census definition",
+	END AS POWPUMA,
 	CASE POWSP
 		WHEN 'bbb' THEN 'Not applicable - not a worker-not in the labor force, including persons under 16 years; unemployed; employed, with a job not at work; Armed Forces, with a job but not at work'
 		WHEN '001' THEN 'Alabama or AL'
@@ -3769,21 +3769,21 @@ SELECT
 		WHEN '303' THEN 'Mexico'
 		WHEN '399' THEN 'Americas, Not Specified'
 		WHEN '555' THEN 'Other US Island Areas Not Specified, Africa, Oceania, at Sea, or Abroad, Not Specified'
-	END AS "Place of work - State or foreign country recode",
+	END AS POWSP,
 	CASE PRIVCOV
 		WHEN '1' THEN 'With private health insurance coverage'
 		WHEN '2' THEN 'Without private health insurance coverage'
-	END AS "Private health insurance coverage recode",
+	END AS PRIVCOV,
 	CASE PUBCOV
 		WHEN '1' THEN 'With public health coverage'
 		WHEN '2' THEN 'Without public health coverage'
-	END AS "Public health coverage recode",
+	END AS PUBCOV,
 	CASE QTRBIR
 		WHEN '1' THEN 'January through March'
 		WHEN '2' THEN 'April through June'
 		WHEN '3' THEN 'July through September'
 		WHEN '4' THEN 'October through December'
-	END AS "Quarter of birth",
+	END AS QTRBIR,
 	CASE RAC1P
 		WHEN '1' THEN 'White alone'
 		WHEN '2' THEN 'Black or African American alone'
@@ -3794,7 +3794,7 @@ SELECT
 		WHEN '7' THEN 'Native Hawaiian and Other Pacific Islander alone'
 		WHEN '8' THEN 'Some Other Race alone'
 		WHEN '9' THEN 'Two or More Races'
-	END AS "Recoded detailed race code",
+	END AS RAC1P,
 	CASE RAC2P
 		WHEN '01' THEN 'White alone'
 		WHEN '02' THEN 'Black or African American alone'
@@ -3861,7 +3861,7 @@ SELECT
 		WHEN '66' THEN 'Other Native Hawaiian and Other Pacific Islander'
 		WHEN '67' THEN 'Some Other Race alone'
 		WHEN '68' THEN 'Two or More Races'
-	END AS "Recoded detailed race code",
+	END AS RAC2P,
 	CASE RAC3P
 		WHEN '001' THEN 'White alone'
 		WHEN '002' THEN 'Black or African American alone'
@@ -3963,60 +3963,60 @@ SELECT
 		WHEN '098' THEN 'Korean; and or or Vietnamese; and or or Other Asian; and or or Native Hawaiian and Other Pacific Islander groups; and or or Some Other Race'
 		WHEN '099' THEN 'Native Hawaiian; and or or Pacific Islander groups; and or or Some Other Race'
 		WHEN '100' THEN 'White; and or or Black or African American; and or or American Indian and Alaska Native; and or or Asian groups; and or or Native Hawaiian and Other Pacific Islander groups; and or or Some Other Race'
-	END AS "Recoded detailed race code",
+	END AS RAC3P,
 	CASE RACAIAN
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "American Indian and Alaska Native recode (American Indian and Alaska Native alone or in combination with one or more other races)",
+	END AS RACAIAN,
 	CASE RACASN
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Asian recode (Asian alone or in combination with one or more other races)",
+	END AS RACASN,
 	CASE RACBLK
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Black or African American recode (Black alone or in combination with one or more other races)",
+	END AS RACBLK,
 	CASE RACNH
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Native Hawaiian recode (Native Hawaiian alone or in combination with one or more other races)",
+	END AS RACNH,
 	CASE RACNUM
 		WHEN '1' THEN 'Race groups'
-	END AS "Number of major race groups represented",
+	END AS RACNUM,
 	CASE RACPI
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Other Pacific Islander recode (Other Pacific Islander alone or in combination with one or more other races)",
+	END AS RACPI,
 	CASE RACSOR
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Some other race recode (Some other race alone or in combination with one or more other races)",
+	END AS RACSOR,
 	CASE RACWHT
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "White recode (White alone or in combination with one or more other races)",
+	END AS RACWHT,
 	CASE RC
 		WHEN 'b' THEN 'Not applicable - in GQ'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Related child",
+	END AS RC,
 	CASE SCIENGP
 		WHEN 'b' THEN 'Not applicable - less than bachelors degree'
 		WHEN '1' THEN 'Yes'
 		WHEN '2' THEN 'No'
-	END AS "Field of Degree Science and Engineering Flag - NSF Definition",
+	END AS SCIENGP,
 	CASE SCIENGRLP
 		WHEN 'b' THEN 'Not applicable - less than bachelors degree'
 		WHEN '1' THEN 'Yes'
 		WHEN '2' THEN 'No'
-	END AS "Field of Degree Science and Engineering Related Flag - NSF Definition",
+	END AS SCIENGRLP,
 	CASE SFN
 		WHEN 'b' THEN 'Not applicable - GQ or not in a subfamily'
 		WHEN '1' THEN 'In subfamily 1'
 		WHEN '2' THEN 'In subfamily 2'
 		WHEN '3' THEN 'In subfamily 3'
 		WHEN '4' THEN 'In subfamily 4'
-	END AS "Subfamily number",
+	END AS SFN,
 	CASE SFR
 		WHEN 'b' THEN 'Not applicable - GQ or not in a subfamily'
 		WHEN '1' THEN 'Husband or wife no children'
@@ -4025,7 +4025,7 @@ SELECT
 		WHEN '4' THEN 'Child in a married-couple subfamily'
 		WHEN '5' THEN 'Child in a mother-child subfamily'
 		WHEN '6' THEN 'Child in a father-child subfamily'
-	END AS "Subfamily relationship",
+	END AS SFR,
 	CASE SOCP
 		WHEN 'bbbbbb' THEN 'Not applicable - less than 16 years old or NILF who last worked more than 5 years ago or never worked'
 		WHEN '1110XX' THEN 'MGR-Chief Executives And Legislators'
@@ -4558,7 +4558,7 @@ SELECT
 		WHEN '553010' THEN 'MIL-Military Enlisted Tactical Operations And Air or Weapons Specialists And Crew Members'
 		WHEN '559830' THEN 'MIL-Military, Rank Not Specified'
 		WHEN '999920' THEN 'Unemployed, With No Work Experience In The Last 5 Years Or Earlier Or Never Worked'
-	END AS "Standard Occupational Classification (SOC) codes for 2018 and later based on 2018 SOC codes",
+	END AS SOCP,
 	CASE VPS
 		WHEN 'bb' THEN 'Not applicable - less than 17 years old, no active duty'
 		WHEN '01' THEN 'Gulf War: 9 or 2001 or later'
@@ -4575,7 +4575,7 @@ SELECT
 		WHEN '12' THEN 'Between Gulf War and Vietnam Era only'
 		WHEN '13' THEN 'Between Vietnam Era and Korean War only'
 		WHEN '14' THEN 'Peacetime service before the Korean War only'
-	END AS "Veteran period of service",
+	END AS VPS,
 	CASE WAOB
 		WHEN '1' THEN 'US state - POBP = 001-059'
 		WHEN '2' THEN 'PR and US Island Areas - POBP = 061-099'
@@ -4585,318 +4585,318 @@ SELECT
 		WHEN '6' THEN 'Africa - POBP = 400-499'
 		WHEN '7' THEN 'Northern America - POBP = 300-302,304-309'
 		WHEN '8' THEN 'Oceania and at Sea - POBP = 060,500-554'
-	END AS "World area of birth",
+	END AS WAOB,
 	CASE FAGEP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Age allocation flag",
+	END AS FAGEP,
 	CASE FANCP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Ancestry allocation flag",
+	END AS FANCP,
 	CASE FCITP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Citizenship allocation flag",
+	END AS FCITP,
 	CASE FCITWP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Year of naturalization write-in allocation flag",
+	END AS FCITWP,
 	CASE FCOWP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Class of worker allocation flag",
+	END AS FCOWP,
 	CASE FDDRSP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Self-care difficulty allocation flag",
+	END AS FDDRSP,
 	CASE FDEARP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Hearing difficulty allocation flag",
+	END AS FDEARP,
 	CASE FDEYEP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Vision difficulty allocation flag",
+	END AS FDEYEP,
 	CASE FDISP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Disability recode allocation flag",
+	END AS FDISP,
 	CASE FDOUTP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Independent living difficulty allocation flag",
+	END AS FDOUTP,
 	CASE FDPHYP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Ambulatory difficulty allocation flag",
+	END AS FDPHYP,
 	CASE FDRATP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Disability rating percentage allocation flag",
+	END AS FDRATP,
 	CASE FDRATXP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Disability rating checkbox allocation flag",
+	END AS FDRATXP,
 	CASE FDREMP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Cognitive difficulty allocation flag",
+	END AS FDREMP,
 	CASE FENGP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Ability to speak English allocation flag",
+	END AS FENGP,
 	CASE FESRP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Employment status recode allocation flag",
+	END AS FESRP,
 	CASE FFERP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Gave birth to child within the past 12 months allocation flag",
+	END AS FFERP,
 	CASE FFODP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Field of Degree allocation flag",
+	END AS FFODP,
 	CASE FGCLP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Grandparents living with grandchildren allocation flag",
+	END AS FGCLP,
 	CASE FGCMP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Length of time responsible for grandchildren allocation flag",
+	END AS FGCMP,
 	CASE FGCRP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Grandparents responsible for grandchildren allocation flag",
+	END AS FGCRP,
 	CASE FHICOVP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Health insurance coverage recode allocation flag",
+	END AS FHICOVP,
 	CASE FHIMRKSP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Subsidized Marketplace Coverage allocation flag",
+	END AS FHIMRKSP,
 	CASE FHINS1P
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Insurance through a current or former employer or union allocation flag",
+	END AS FHINS1P,
 	CASE FHINS2P
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Insurance purchased directly from an insurance company allocation flag",
+	END AS FHINS2P,
 	CASE FHINS3C
 		WHEN 'b' THEN 'Does not have Medicare coverage - HINS3=2'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Medicare coverage given through the eligibility coverage edit",
+	END AS FHINS3C,
 	CASE FHINS3P
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Medicare, for people 65 or older, or people with certain disabilities allocation flag",
+	END AS FHINS3P,
 	CASE FHINS4C
 		WHEN 'b' THEN 'Does not have Medicaid coverage - HINS4=2'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Medicaid coverage given through the eligibility coverage edit",
+	END AS FHINS4C,
 	CASE FHINS4P
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Medicaid, medical assistance, or any kind of government-assistance plan for people with low incomes or a disability allocation flag",
+	END AS FHINS4P,
 	CASE FHINS5C
 		WHEN 'b' THEN 'Does not have TRICARE coverage - HINS5=2'
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "TRICARE coverage given through the eligibility coverage edit",
+	END AS FHINS5C,
 	CASE FHINS5P
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "TRICARE or other military health care allocation flag",
+	END AS FHINS5P,
 	CASE FHINS6P
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "VA (enrolled for VA health care) allocation flag",
+	END AS FHINS6P,
 	CASE FHINS7P
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Indian health service allocation flag",
+	END AS FHINS7P,
 	CASE FHISP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Detailed Hispanic origin allocation flag",
+	END AS FHISP,
 	CASE FINDP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Industry allocation flag",
+	END AS FINDP,
 	CASE FINTP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Interest, dividend, and net rental income allocation flag",
+	END AS FINTP,
 	CASE FJWDP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Time of departure to work allocation flag",
+	END AS FJWDP,
 	CASE FJWMNP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Travel time to work allocation flag",
+	END AS FJWMNP,
 	CASE FJWRIP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Vehicle occupancy allocation flag",
+	END AS FJWRIP,
 	CASE FJWTRNSP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Means of transportation to work allocation flag",
+	END AS FJWTRNSP,
 	CASE FLANP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Language spoken at home allocation flag",
+	END AS FLANP,
 	CASE FLANXP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Language other than English allocation flag",
+	END AS FLANXP,
 	CASE FMARP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Marital status allocation flag",
+	END AS FMARP,
 	CASE FMARHDP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Divorced in the past 12 months allocation flag",
+	END AS FMARHDP,
 	CASE FMARHMP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Married in the past 12 months allocation flag",
+	END AS FMARHMP,
 	CASE FMARHTP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Times married allocation flag",
+	END AS FMARHTP,
 	CASE FMARHWP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Widowed in the past 12 months allocation flag",
+	END AS FMARHWP,
 	CASE FMARHYP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Year last married allocation flag",
+	END AS FMARHYP,
 	CASE FMIGP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Mobility status allocation flag",
+	END AS FMIGP,
 	CASE FMIGSP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Migration state and foreign country allocation flag",
+	END AS FMIGSP,
 	CASE FMILPP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Military periods of service allocation flag",
+	END AS FMILPP,
 	CASE FMILSP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Military service allocation flag",
+	END AS FMILSP,
 	CASE FOCCP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Occupation allocation flag",
+	END AS FOCCP,
 	CASE FOIP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "All other income allocation flag",
+	END AS FOIP,
 	CASE FPAP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Public assistance income allocation flag",
+	END AS FPAP,
 	CASE FPERNP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Total person's earnings allocation flag",
+	END AS FPERNP,
 	CASE FPINCP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Total person's income allocation flag",
+	END AS FPINCP,
 	CASE FPOBP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Place of birth allocation flag",
+	END AS FPOBP,
 	CASE FPOWSP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Place of work state allocation flag",
+	END AS FPOWSP,
 	CASE FPRIVCOVP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Private health insurance coverage recode allocation flag",
+	END AS FPRIVCOVP,
 	CASE FPUBCOVP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Public health coverage recode allocation flag",
+	END AS FPUBCOVP,
 	CASE FRACP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Detailed race allocation flag",
+	END AS FRACP,
 	CASE FRELSHIPP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Relationship allocation flag",
+	END AS FRELSHIPP,
 	CASE FRETP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Retirement income allocation flag",
+	END AS FRETP,
 	CASE FSCHGP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Grade attending allocation flag",
+	END AS FSCHGP,
 	CASE FSCHLP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Highest education allocation flag",
+	END AS FSCHLP,
 	CASE FSCHP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "School enrollment allocation flag",
+	END AS FSCHP,
 	CASE FSEMP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Self-employment income allocation flag",
+	END AS FSEMP,
 	CASE FSEXP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Sex allocation flag",
+	END AS FSEXP,
 	CASE FSSIP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Supplementary Security Income allocation flag",
+	END AS FSSIP,
 	CASE FSSP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Social Security income allocation flag",
+	END AS FSSP,
 	CASE FWAGP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Wages and salary income allocation flag",
+	END AS FWAGP,
 	CASE FWKHP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Usual hours worked per week past 12 months allocation flag",
+	END AS FWKHP,
 	CASE FWKLP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Last worked allocation flag",
+	END AS FWKLP,
 	CASE FWKWNP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Weeks worked past 12 months allocation flag",
+	END AS FWKWNP,
 	CASE FWRKP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Worked last week allocation flag",
+	END AS FWRKP,
 	CASE FYOEP
 		WHEN '0' THEN 'No'
 		WHEN '1' THEN 'Yes'
-	END AS "Year of entry allocation flag",
+	END AS FYOEP,
     PWGTP1,
     PWGTP2,
     PWGTP3,
@@ -4978,5 +4978,6 @@ SELECT
     PWGTP79,
     PWGTP80
 FROM read_csv('/Users/me/data/american_community_survey/2022/1-Year/csv_pnv/psam_p32.csv', 
-              skip=1,
-              columns={'RT': 'VARCHAR', 'SERIALNO': 'VARCHAR', 'DIVISION': 'VARCHAR', 'SPORDER': 'VARCHAR', 'PUMA': 'VARCHAR', 'REGION': 'VARCHAR', 'ST': 'VARCHAR', 'ADJINC': 'VARCHAR', 'PWGTP': 'VARCHAR', 'AGEP': 'VARCHAR', 'CIT': 'VARCHAR', 'CITWP': 'VARCHAR', 'COW': 'VARCHAR', 'DDRS': 'VARCHAR', 'DEAR': 'VARCHAR', 'DEYE': 'VARCHAR', 'DOUT': 'VARCHAR', 'DPHY': 'VARCHAR', 'DRAT': 'VARCHAR', 'DRATX': 'VARCHAR', 'DREM': 'VARCHAR', 'ENG': 'VARCHAR', 'FER': 'VARCHAR', 'GCL': 'VARCHAR', 'GCM': 'VARCHAR', 'GCR': 'VARCHAR', 'HIMRKS': 'VARCHAR', 'HINS1': 'VARCHAR', 'HINS2': 'VARCHAR', 'HINS3': 'VARCHAR', 'HINS4': 'VARCHAR', 'HINS5': 'VARCHAR', 'HINS6': 'VARCHAR', 'HINS7': 'VARCHAR', 'INTP': 'VARCHAR', 'JWMNP': 'VARCHAR', 'JWRIP': 'VARCHAR', 'JWTRNS': 'VARCHAR', 'LANX': 'VARCHAR', 'MAR': 'VARCHAR', 'MARHD': 'VARCHAR', 'MARHM': 'VARCHAR', 'MARHT': 'VARCHAR', 'MARHW': 'VARCHAR', 'MARHYP': 'VARCHAR', 'MIG': 'VARCHAR', 'MIL': 'VARCHAR', 'MLPA': 'VARCHAR', 'MLPB': 'VARCHAR', 'MLPCD': 'VARCHAR', 'MLPE': 'VARCHAR', 'MLPFG': 'VARCHAR', 'MLPH': 'VARCHAR', 'MLPIK': 'VARCHAR', 'MLPJ': 'VARCHAR', 'NWAB': 'VARCHAR', 'NWAV': 'VARCHAR', 'NWLA': 'VARCHAR', 'NWLK': 'VARCHAR', 'NWRE': 'VARCHAR', 'OIP': 'VARCHAR', 'PAP': 'VARCHAR', 'RELSHIPP': 'VARCHAR', 'RETP': 'VARCHAR', 'SCH': 'VARCHAR', 'SCHG': 'VARCHAR', 'SCHL': 'VARCHAR', 'SEMP': 'VARCHAR', 'SEX': 'VARCHAR', 'SSIP': 'VARCHAR', 'SSP': 'VARCHAR', 'WAGP': 'VARCHAR', 'WKHP': 'VARCHAR', 'WKL': 'VARCHAR', 'WKWN': 'VARCHAR', 'WRK': 'VARCHAR', 'YOEP': 'VARCHAR', 'ANC': 'VARCHAR', 'ANC1P': 'VARCHAR', 'ANC2P': 'VARCHAR', 'DECADE': 'VARCHAR', 'DIS': 'VARCHAR', 'DRIVESP': 'VARCHAR', 'ESP': 'VARCHAR', 'ESR': 'VARCHAR', 'FOD1P': 'VARCHAR', 'FOD2P': 'VARCHAR', 'HICOV': 'VARCHAR', 'HISP': 'VARCHAR', 'INDP': 'VARCHAR', 'JWAP': 'VARCHAR', 'JWDP': 'VARCHAR', 'LANP': 'VARCHAR', 'MIGPUMA': 'VARCHAR', 'MIGSP': 'VARCHAR', 'MSP': 'VARCHAR', 'NAICSP': 'VARCHAR', 'NATIVITY': 'VARCHAR', 'NOP': 'VARCHAR', 'OC': 'VARCHAR', 'OCCP': 'VARCHAR', 'PAOC': 'VARCHAR', 'PERNP': 'VARCHAR', 'PINCP': 'VARCHAR', 'POBP': 'VARCHAR', 'POVPIP': 'VARCHAR', 'POWPUMA': 'VARCHAR', 'POWSP': 'VARCHAR', 'PRIVCOV': 'VARCHAR', 'PUBCOV': 'VARCHAR', 'QTRBIR': 'VARCHAR', 'RAC1P': 'VARCHAR', 'RAC2P': 'VARCHAR', 'RAC3P': 'VARCHAR', 'RACAIAN': 'VARCHAR', 'RACASN': 'VARCHAR', 'RACBLK': 'VARCHAR', 'RACNH': 'VARCHAR', 'RACNUM': 'VARCHAR', 'RACPI': 'VARCHAR', 'RACSOR': 'VARCHAR', 'RACWHT': 'VARCHAR', 'RC': 'VARCHAR', 'SCIENGP': 'VARCHAR', 'SCIENGRLP': 'VARCHAR', 'SFN': 'VARCHAR', 'SFR': 'VARCHAR', 'SOCP': 'VARCHAR', 'VPS': 'VARCHAR', 'WAOB': 'VARCHAR', 'FAGEP': 'VARCHAR', 'FANCP': 'VARCHAR', 'FCITP': 'VARCHAR', 'FCITWP': 'VARCHAR', 'FCOWP': 'VARCHAR', 'FDDRSP': 'VARCHAR', 'FDEARP': 'VARCHAR', 'FDEYEP': 'VARCHAR', 'FDISP': 'VARCHAR', 'FDOUTP': 'VARCHAR', 'FDPHYP': 'VARCHAR', 'FDRATP': 'VARCHAR', 'FDRATXP': 'VARCHAR', 'FDREMP': 'VARCHAR', 'FENGP': 'VARCHAR', 'FESRP': 'VARCHAR', 'FFERP': 'VARCHAR', 'FFODP': 'VARCHAR', 'FGCLP': 'VARCHAR', 'FGCMP': 'VARCHAR', 'FGCRP': 'VARCHAR', 'FHICOVP': 'VARCHAR', 'FHIMRKSP': 'VARCHAR', 'FHINS1P': 'VARCHAR', 'FHINS2P': 'VARCHAR', 'FHINS3C': 'VARCHAR', 'FHINS3P': 'VARCHAR', 'FHINS4C': 'VARCHAR', 'FHINS4P': 'VARCHAR', 'FHINS5C': 'VARCHAR', 'FHINS5P': 'VARCHAR', 'FHINS6P': 'VARCHAR', 'FHINS7P': 'VARCHAR', 'FHISP': 'VARCHAR', 'FINDP': 'VARCHAR', 'FINTP': 'VARCHAR', 'FJWDP': 'VARCHAR', 'FJWMNP': 'VARCHAR', 'FJWRIP': 'VARCHAR', 'FJWTRNSP': 'VARCHAR', 'FLANP': 'VARCHAR', 'FLANXP': 'VARCHAR', 'FMARP': 'VARCHAR', 'FMARHDP': 'VARCHAR', 'FMARHMP': 'VARCHAR', 'FMARHTP': 'VARCHAR', 'FMARHWP': 'VARCHAR', 'FMARHYP': 'VARCHAR', 'FMIGP': 'VARCHAR', 'FMIGSP': 'VARCHAR', 'FMILPP': 'VARCHAR', 'FMILSP': 'VARCHAR', 'FOCCP': 'VARCHAR', 'FOIP': 'VARCHAR', 'FPAP': 'VARCHAR', 'FPERNP': 'VARCHAR', 'FPINCP': 'VARCHAR', 'FPOBP': 'VARCHAR', 'FPOWSP': 'VARCHAR', 'FPRIVCOVP': 'VARCHAR', 'FPUBCOVP': 'VARCHAR', 'FRACP': 'VARCHAR', 'FRELSHIPP': 'VARCHAR', 'FRETP': 'VARCHAR', 'FSCHGP': 'VARCHAR', 'FSCHLP': 'VARCHAR', 'FSCHP': 'VARCHAR', 'FSEMP': 'VARCHAR', 'FSEXP': 'VARCHAR', 'FSSIP': 'VARCHAR', 'FSSP': 'VARCHAR', 'FWAGP': 'VARCHAR', 'FWKHP': 'VARCHAR', 'FWKLP': 'VARCHAR', 'FWKWNP': 'VARCHAR', 'FWRKP': 'VARCHAR', 'FYOEP': 'VARCHAR', 'PWGTP1': 'VARCHAR', 'PWGTP2': 'VARCHAR', 'PWGTP3': 'VARCHAR', 'PWGTP4': 'VARCHAR', 'PWGTP5': 'VARCHAR', 'PWGTP6': 'VARCHAR', 'PWGTP7': 'VARCHAR', 'PWGTP8': 'VARCHAR', 'PWGTP9': 'VARCHAR', 'PWGTP10': 'VARCHAR', 'PWGTP11': 'VARCHAR', 'PWGTP12': 'VARCHAR', 'PWGTP13': 'VARCHAR', 'PWGTP14': 'VARCHAR', 'PWGTP15': 'VARCHAR', 'PWGTP16': 'VARCHAR', 'PWGTP17': 'VARCHAR', 'PWGTP18': 'VARCHAR', 'PWGTP19': 'VARCHAR', 'PWGTP20': 'VARCHAR', 'PWGTP21': 'VARCHAR', 'PWGTP22': 'VARCHAR', 'PWGTP23': 'VARCHAR', 'PWGTP24': 'VARCHAR', 'PWGTP25': 'VARCHAR', 'PWGTP26': 'VARCHAR', 'PWGTP27': 'VARCHAR', 'PWGTP28': 'VARCHAR', 'PWGTP29': 'VARCHAR', 'PWGTP30': 'VARCHAR', 'PWGTP31': 'VARCHAR', 'PWGTP32': 'VARCHAR', 'PWGTP33': 'VARCHAR', 'PWGTP34': 'VARCHAR', 'PWGTP35': 'VARCHAR', 'PWGTP36': 'VARCHAR', 'PWGTP37': 'VARCHAR', 'PWGTP38': 'VARCHAR', 'PWGTP39': 'VARCHAR', 'PWGTP40': 'VARCHAR', 'PWGTP41': 'VARCHAR', 'PWGTP42': 'VARCHAR', 'PWGTP43': 'VARCHAR', 'PWGTP44': 'VARCHAR', 'PWGTP45': 'VARCHAR', 'PWGTP46': 'VARCHAR', 'PWGTP47': 'VARCHAR', 'PWGTP48': 'VARCHAR', 'PWGTP49': 'VARCHAR', 'PWGTP50': 'VARCHAR', 'PWGTP51': 'VARCHAR', 'PWGTP52': 'VARCHAR', 'PWGTP53': 'VARCHAR', 'PWGTP54': 'VARCHAR', 'PWGTP55': 'VARCHAR', 'PWGTP56': 'VARCHAR', 'PWGTP57': 'VARCHAR', 'PWGTP58': 'VARCHAR', 'PWGTP59': 'VARCHAR', 'PWGTP60': 'VARCHAR', 'PWGTP61': 'VARCHAR', 'PWGTP62': 'VARCHAR', 'PWGTP63': 'VARCHAR', 'PWGTP64': 'VARCHAR', 'PWGTP65': 'VARCHAR', 'PWGTP66': 'VARCHAR', 'PWGTP67': 'VARCHAR', 'PWGTP68': 'VARCHAR', 'PWGTP69': 'VARCHAR', 'PWGTP70': 'VARCHAR', 'PWGTP71': 'VARCHAR', 'PWGTP72': 'VARCHAR', 'PWGTP73': 'VARCHAR', 'PWGTP74': 'VARCHAR', 'PWGTP75': 'VARCHAR', 'PWGTP76': 'VARCHAR', 'PWGTP77': 'VARCHAR', 'PWGTP78': 'VARCHAR', 'PWGTP79': 'VARCHAR', 'PWGTP80': 'VARCHAR'})
+              parallel=False,
+              all_varchar=True,
+              auto_detect=True)
