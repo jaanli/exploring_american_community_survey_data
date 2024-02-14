@@ -3,6 +3,8 @@
 *.duckdb.tmp/
 *.duckdb.wal
 
+.gitkeep
+
 # MacOS 
 .DS_Store
 
