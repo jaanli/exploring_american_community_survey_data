@@ -1,6 +1,6 @@
 # Processing a year's worth of American Community Survey individual-level and household data in 5 minutes
 
-Using the Census Bureau's American Community Survey (ACS) data with `dbt` (data build tool) for creating compressed parquet files for exploratory data analysis and downstream applications.
+Using the Census Bureau's American Community Survey (ACS) data with `dbt` (data build tool) for creating compressed parquet files for exploratory data analysis and downstream applications. I am doing this as a gift for my partner for our project exploring public space and capital together, and as an excuse to learn about cool new tools :)
 
 ## Examples
 
