@@ -8,6 +8,11 @@ Examples are in the `/examples` directory.
 
 Example plot of this data: https://s13.gifyu.com/images/SCGH2.gif (code here: https://github.com/jaanli/lonboard/blob/example-american-community-survey/examples/american-community-survey.ipynb)
 
+Example visualization: live demo here - https://jaanli.github.io/american-community-survey/ (visualization code [here](https://github.com/jaanli/american-community-survey/))
+
+![image](https://github.com/jaanli/exploring_american_community_survey_data/assets/5317244/0428e121-c4ec-4a97-826f-d3f944bc7bf2)
+
+
 
 ## Requirements
 
