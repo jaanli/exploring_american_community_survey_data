@@ -4,7 +4,9 @@ Using the Census Bureau's American Community Survey (ACS) data with `dbt` (data 
 
 ## Examples
 
-Examples are in the `/examples` directory:
+Examples are in the `/examples` directory.
+
+Example plot of this data: https://s13.gifyu.com/images/SCGH2.gif (code here: https://github.com/jaanli/lonboard/blob/example-american-community-survey/examples/american-community-survey.ipynb)
 
 
 ## Requirements
