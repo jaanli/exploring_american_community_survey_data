@@ -135,6 +135,56 @@ D SELECT COUNT(*) FROM '~/data/american_community_survey/housing_units_*[!united
 └──────────────┘
 ```
 
+## Example of downloading, transforming, and compressing 2021 data 
+
+1. Use dbt to save the database of the  the 2021 1-Year ACS PUMS data and data dictionary from the Census Bureau's server and extract the archives for all of the 50 states' PUMS files:
+```
+dbt run --select "public_use_microdata_sample.public_use_microdata_sample_urls" \
+        --vars '{"public_use_microdata_sample_url": "https://www2.census.gov/programs-surveys/acs/data/pums/2021/1-Year/",  "public_use_microdata_sample_data_dictionary_url": "https://www2.census.gov/programs-surveys/acs/tech_docs/pums/data_dict/PUMS_Data_Dictionary_2021.csv", "output_path": "~/data/american_community_survey"}' \
+        --threads 8
+```
+
+Check that the URLs appear correct:
+```
+duckdb -c "SELECT * FROM '~/data/american_community_survey/public_use_microdata_sample_urls.parquet'"
+```
+2. Download and extract the archives for all of the 50 states' PUMS files (takes about 30 seconds on a gigabit connection):
+```
+dbt run --select "public_use_microdata_sample.download_and_extract_archives" \
+        --vars '{"public_use_microdata_sample_url": "https://www2.census.gov/programs-surveys/acs/data/pums/2021/1-Year/",  "public_use_microdata_sample_data_dictionary_url": "https://www2.census.gov/programs-surveys/acs/tech_docs/pums/data_dict/PUMS_Data_Dictionary_2021.csv", "output_path": "~/data/american_community_survey"}' \
+        --threads 8
+```
+Save the paths to the CSV files:
+```
+dbt run --select "public_use_microdata_sample.public_use_microdata_sample_csv_paths" \
+        --vars '{"public_use_microdata_sample_url": "https://www2.census.gov/programs-surveys/acs/data/pums/2021/1-Year/",  "public_use_microdata_sample_data_dictionary_url": "https://www2.census.gov/programs-surveys/acs/tech_docs/pums/data_dict/PUMS_Data_Dictionary_2021.csv", "output_path": "~/data/american_community_survey"}' \
+        --threads 8
+```
+Check that the CSV files are present:
+```
+duckdb -c "SELECT * FROM '~/data/american_community_survey/public_use_microdata_sample_csv_paths.parquet'"
+```
+
+2. Parse the data dictionary:
+```
+dbt run --select "public_use_microdata_sample.public_use_microdata_sample_data_dictionary_path" \
+        --vars '{"public_use_microdata_sample_url": "https://www2.census.gov/programs-surveys/acs/data/pums/2021/1-Year/",  "public_use_microdata_sample_data_dictionary_url": "https://www2.census.gov/programs-surveys/acs/tech_docs/pums/data_dict/PUMS_Data_Dictionary_2021.csv", "output_path": "~/data/american_community_survey"}' \
+        --threads 8
+```
+Check that the data dictionary path is displayed correctly:
+```
+duckdb -c "SELECT * FROM '~/data/american_community_survey/public_use_microdata_sample_data_dictionary_path.parquet'"
+```
+
+3. Generate the SQL commands needed to map every state's individual people or housing unit variables to the easier to use (and read) names:
+```
+python scripts/generate_sql_with_enum_types_and_mapped_values_renamed.py \  
+       ~/data/american_community_survey/public_use_microdata_sample_csv_paths.parquet \  
+       ~/data/american_community_survey/PUMS_Data_Dictionary_2021.json
+```
+4. Execute these generated SQL queries using 8 threads (you can adjust this number to be higher depending on the available processor cores on your system):
+```
+
 ## Types of data available for every person who responded to the American Community Survey
 
 The following variables are available in the individual-level census files for every (anonymized) person, alongside 79 variables for the `weight` of the person (for computing population-level weighted estimates and [allocation flags](https://www.census.gov/acs/www/methodology/sample-size-and-data-quality/item-allocation-rates/) to denote missing values that were imputed):
