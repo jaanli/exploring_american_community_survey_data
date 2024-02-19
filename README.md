@@ -1,10 +1,17 @@
 # Processing a year's worth of American Community Survey individual-level and household data in 5 minutes
 
-Using the Census Bureau's American Community Survey (ACS) data with `dbt` (data build tool) for creating compressed parquet files for exploratory data analysis and downstream applications.
+Using the Census Bureau's American Community Survey (ACS) data with `dbt` (data build tool) for creating compressed parquet files for exploratory data analysis and downstream applications. I am doing this as a gift for my partner for our project exploring public space and capital together, and as an excuse to learn about cool new tools :)
 
 ## Examples
 
-Examples are in the `/examples` directory:
+Examples are in the `/examples` directory.
+
+Example plot of this data: https://s13.gifyu.com/images/SCGH2.gif (code here: https://github.com/jaanli/lonboard/blob/example-american-community-survey/examples/american-community-survey.ipynb)
+
+Example visualization: live demo here - https://jaanli.github.io/american-community-survey/ (visualization code [here](https://github.com/jaanli/american-community-survey/))
+
+![image](https://github.com/jaanli/exploring_american_community_survey_data/assets/5317244/0428e121-c4ec-4a97-826f-d3f944bc7bf2)
+
 
 
 ## Requirements
