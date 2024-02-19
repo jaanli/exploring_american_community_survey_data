@@ -198,6 +198,15 @@ Check that you can execute a SQL query against these files:
 duckdb -c "SELECT COUNT(*) FROM '~/data/american_community_survey/*individual_people_united_states*2021.parquet'"
 ```
 6. Create a data visualization using the compressed parquet files by adding to the `american_community_survey/models/public_use_microdata_sample/figures` directory, and using examples from here https://github.com/jaanli/american-community-survey/ or here https://github.com/jaanli/lonboard/blob/example-american-community-survey/examples/american-community-survey.ipynb
+
+To save time, there is a bash script with these steps in `scripts/process_one_year_of_american_community_survey_data.sh` that can be used as follows:
+```
+chmod a+x scripts/process_one_year_of_american_community_survey_data.sh
+./scripts/process_one_year_of_american_community_survey_data.sh 2021
+```
+
+The argument specifies the year to be downloaded, transformed, compressed, and saved.
+
 ## Types of data available for every person who responded to the American Community Survey
 
 The following variables are available in the individual-level census files for every (anonymized) person, alongside 79 variables for the `weight` of the person (for computing population-level weighted estimates and [allocation flags](https://www.census.gov/acs/www/methodology/sample-size-and-data-quality/item-allocation-rates/) to denote missing values that were imputed):

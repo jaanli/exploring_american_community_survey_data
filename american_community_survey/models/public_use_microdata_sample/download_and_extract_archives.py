@@ -25,7 +25,7 @@ def model(dbt, session):
     base_url = dbt.config.get('public_use_microdata_sample_url')  # Assuming this is correctly set
 
     # Fetch URLs from your table or view
-    query = "SELECT * FROM list_public_use_microdata_sample_urls"
+    query = "SELECT * FROM list_urls"
     result = session.execute(query).fetchall()
     columns = [desc[0] for desc in session.description]
     url_df = pd.DataFrame(result, columns=columns)
