@@ -184,7 +184,20 @@ python scripts/generate_sql_with_enum_types_and_mapped_values_renamed.py \
 ```
 4. Execute these generated SQL queries using 8 threads (you can adjust this number to be higher depending on the available processor cores on your system):
 ```
-
+dbt run --select "public_use_microdata_sample.generated.2021+" \
+        --vars '{"public_use_microdata_sample_url": "https://www2.census.gov/programs-surveys/acs/data/pums/2021/1-Year/",  "public_use_microdata_sample_data_dictionary_url": "https://www2.census.gov/programs-surveys/acs/tech_docs/pums/data_dict/PUMS_Data_Dictionary_2021.csv", "output_path": "~/data/american_community_survey"}' \
+        --threads 8
+```
+5. **Test** that the compressed parquet files are present and have the expected size:
+```
+du -sh ~/data/american_community_survey/2021
+du -hc ~/data/american_community_survey/*2021.parquet
+```
+Check that you can execute a SQL query against these files:
+```
+duckdb -c "SELECT COUNT(*) FROM '~/data/american_community_survey/*individual_people_united_states*2021.parquet'"
+```
+6. Create a data visualization using the compressed parquet files by adding to the `american_community_survey/models/public_use_microdata_sample/figures` directory, and using examples from here https://github.com/jaanli/american-community-survey/ or here https://github.com/jaanli/lonboard/blob/example-american-community-survey/examples/american-community-survey.ipynb
 ## Types of data available for every person who responded to the American Community Survey
 
 The following variables are available in the individual-level census files for every (anonymized) person, alongside 79 variables for the `weight` of the person (for computing population-level weighted estimates and [allocation flags](https://www.census.gov/acs/www/methodology/sample-size-and-data-quality/item-allocation-rates/) to denote missing values that were imputed):
