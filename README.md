@@ -12,8 +12,6 @@ Example visualization: live demo here - https://jaanli.github.io/american-commun
 
 ![image](https://github.com/jaanli/exploring_american_community_survey_data/assets/5317244/0428e121-c4ec-4a97-826f-d3f944bc7bf2)
 
-
-
 ## Requirements
 
 Clone the repo; create and activate a virtual environment:
@@ -205,7 +203,7 @@ chmod a+x scripts/process_one_year_of_american_community_survey_data.sh
 ./scripts/process_one_year_of_american_community_survey_data.sh 2021
 ```
 
-The argument specifies the year to be downloaded, transformed, compressed, and saved.
+The argument specifies the year to be downloaded, transformed, compressed, and saved. It takes about 5 minutes per year of data.
 
 ## Types of data available for every person who responded to the American Community Survey
 
