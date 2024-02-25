@@ -7,7 +7,7 @@
 {% for code, description in raw_mappings.items() %}
     {% set prefix = code[:3] %}
     {% if prefix not in seen_prefixes %}
-        {% do processed_mappings.update({code: description}) %}
+        {% do processed_mappings.update({code[:3]: description}) %}
         {% do seen_prefixes.update({prefix: true}) %}  {# Simulate set.add() by adding a key to the dictionary #}
     {% endif %}
 {% endfor %}

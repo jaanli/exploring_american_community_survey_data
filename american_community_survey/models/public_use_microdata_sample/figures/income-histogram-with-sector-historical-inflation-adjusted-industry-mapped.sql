@@ -85,8 +85,8 @@ sector_transformation AS (
 SELECT
     year,
     sector,
-    adjusted_income_to_2022,
-    SUM(count) AS total_count
+    adjusted_income_to_2022 AS income,
+    SUM(count) AS count
 FROM sector_transformation
-GROUP BY year, sector, adjusted_income_to_2022
-ORDER BY year, adjusted_income_to_2022 DESC, sector
+GROUP BY year, sector, income
+ORDER BY year, income DESC, sector
