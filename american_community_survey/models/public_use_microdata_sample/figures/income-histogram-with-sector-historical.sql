@@ -5,6 +5,7 @@ WITH raw_data AS (
         CAST("WAGP" AS FLOAT) AS wage,
         CAST("ADJINC" AS FLOAT) AS adjustment_factor,
         "INDP" AS industry_code,
+        "PUMA" AS puma,
         CAST("ADJUST" AS FLOAT) AS pre_2007_adjustment_factor,
         CAST(SUBSTRING(SPLIT_PART(filename, '/', 6), 1, 4) AS INT) AS year,
         filename
@@ -19,6 +20,7 @@ SELECT
     adjustment_factor,
     pre_2007_adjustment_factor,
     industry_code,
+    puma,
     year
 FROM raw_data
-ORDER BY year, wage, industry_code, adjustment_factor, pre_2007_adjustment_factor
+ORDER BY year, puma, industry_code, wage, adjustment_factor, pre_2007_adjustment_factor
