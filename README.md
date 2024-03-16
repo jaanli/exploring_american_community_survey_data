@@ -461,6 +461,50 @@ Work status of householder or spouse in family households
 
 https://chat.openai.com/share/2018eb46-c896-4418-bc12-5c831a87bba6
 
+## Downloading shapefiles for mapping
+
+1. Scrape the list of URLs:
+```
+dbt run --select "public_use_microdata_sample.list_shapefile_urls"
+```
+2. Create the database file with the list of URLs:
+```
+dbt run --select "public_use_microdata_sample.microdata_area_shapefile_urls"
+```
+3. Download the shapefiles:
+```
+dbt run --select "public_use_microdata_sample.download_and_extract_shapefiles"
+```
+4. Save a database file with the shapefile paths:
+```
+dbt run --select "public_use_microdata_sample.microdata_area_shapefile_paths"
+```
+5. Check that the paths are correct:
+```
+❯ duckdb -c "SELECT * FROM '/Users/me/data/american_community_survey/microdata_area_shapefile_paths.parquet';"
+```
+Displays:
+
+```
+┌─────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                          shp_path                                           │
+│                                           varchar                                           │
+├─────────────────────────────────────────────────────────────────────────────────────────────┤
+│ /Users/me/data/american_community_survey/PUMA5/2010/tl_2010_02_puma10/tl_2010_02_puma10.shp │
+│                                              ·                                              │
+│                                              ·                                              │
+│                                              ·                                              │
+│ /Users/me/data/american_community_survey/PUMA5/2010/tl_2010_48_puma10/tl_2010_48_puma10.shp │
+├─────────────────────────────────────────────────────────────────────────────────────────────┤
+│                                     54 rows (40 shown)                                      │
+└─────────────────────────────────────────────────────────────────────────────────────────────┘
+```
+
+6.  7. [TODO: currently need to do this step in a Jupyter notebook/python script] Create the database table with the combined shapefile path:
+```
+dbt run --select "public_use_microdata_sample.combine_shapefiles*"
+```
+
 ## TODO
 - [ ] Scavenger Hunts Based on ACS Data: Create city-wide scavenger hunts that encourage participants to explore diverse neighborhoods. Use data points like historical landmarks, unique housing characteristics, and multicultural centers as waypoints to foster appreciation for the city's diversity. (From ChatGPT.)
 

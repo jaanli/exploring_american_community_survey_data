@@ -23,7 +23,7 @@ def model(dbt, session):
     merged_gdf = gpd.pd.concat(gdfs)
     merged_gdf['geometry'] = merged_gdf['geometry'].apply(shapely.wkt.loads)
     base_path = os.path.expanduser(dbt.config.get('output_path'))
-    gpd.GeoDataFrame(merged_gdf).to_file(os.path.join(base_path, '2020_census_microdata_tiger_shapefile.shp'), index=False)
+    gpd.GeoDataFrame(merged_gdf).to_file(os.path.join(base_path, 'combined_census_microdata_tiger_shapefile.shp'), index=False)
     # merged_gdf.to_file(os.path.join(base_path, '2020_census_microdata_tiger_shapefile.shp'), index=False)
     
     # Here you would potentially transform merged_gdf or simply return it

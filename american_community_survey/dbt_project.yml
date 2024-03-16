@@ -14,7 +14,7 @@ vars:
   # The URL of the American Community Survey PUMS data
   public_use_microdata_sample_url: "https://www2.census.gov/programs-surveys/acs/data/pums/2022/1-Year/"
   public_use_microdata_sample_data_dictionary_url: "https://www2.census.gov/programs-surveys/acs/tech_docs/pums/data_dict/PUMS_Data_Dictionary_2022.csv"
-  microdata_area_shapefile_url: "https://www2.census.gov/geo/tiger/TIGER2020/PUMA20/"
+  microdata_area_shapefile_url: "https://www2.census.gov/geo/tiger/TIGER2010/PUMA5/2010/" # https://www2.census.gov/geo/tiger/TIGER2010/PUMA5/2010/ # https://www2.census.gov/geo/tiger/TIGER2020/PUMA20/
   output_path: "~/data/american_community_survey"
 
 # These configurations specify where dbt should look for different types of files.

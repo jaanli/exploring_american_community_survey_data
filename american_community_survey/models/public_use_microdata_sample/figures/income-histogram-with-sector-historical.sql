@@ -8,6 +8,7 @@ WITH raw_data AS (
         "PUMA" AS puma,
         CAST("ADJUST" AS FLOAT) AS pre_2007_adjustment_factor,
         CAST(SUBSTRING(SPLIT_PART(filename, '/', 6), 1, 4) AS INT) AS year,
+        ST AS state_code,
         filename
     FROM read_csv_auto('~/data/american_community_survey/*/**/*pus*.csv', filename=true, union_by_name=true)
     WHERE
@@ -21,6 +22,7 @@ SELECT
     pre_2007_adjustment_factor,
     industry_code,
     puma,
-    year
+    year, 
+    state_code
 FROM raw_data
-ORDER BY year, puma, industry_code, wage, adjustment_factor, pre_2007_adjustment_factor
+ORDER BY year, state_code, puma, industry_code, wage, adjustment_factor, pre_2007_adjustment_factor
