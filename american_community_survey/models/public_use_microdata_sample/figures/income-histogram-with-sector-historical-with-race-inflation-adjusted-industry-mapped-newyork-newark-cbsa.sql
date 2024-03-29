@@ -148,9 +148,9 @@ SELECT
     puma,
     puma_name,
     race_recoded AS race,
-    sector,
+    -- sector,
     adjusted_income_to_2022 AS income,
     SUM(count) AS count
 FROM sector_transformation
-GROUP BY year, state_code, puma, puma_name, race, sector, income
+GROUP BY year, state_code, puma, puma_name, race, income
 ORDER BY year
